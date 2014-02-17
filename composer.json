@@ -1,0 +1,34 @@
+{
+    "name": "phobetor/billomat",
+    "type": "library",
+    "license": "MIT",
+    "description": "PHP library for interacting with the Billomat REST API",
+    "keywords": [
+        "billomat",
+        "invoice",
+        "billing"
+    ],
+    "homepage": "https://github.com/Phobetor/billomat",
+    "authors": [
+        {
+            "name": "Andreas Kintzinger",
+            "homepage": "https://github.com/Phobetor/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "guzzle/guzzle": "~3.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phobetor\\": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
+    }
+}
