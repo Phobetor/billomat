@@ -34,7 +34,6 @@ class BillomatClient extends Client
      */
     public function __construct($billomatId, $apiKey, $version = self::LATEST_API_VERSION)
     {
-        // Make sure we always have the app_id parameter as default
         parent::__construct(
             '',
             array(
@@ -42,7 +41,6 @@ class BillomatClient extends Client
                     'headers' => array(
                         'Accept' => 'application/json'
                     ),
-                    'debug' => true
                 ),
                 'command.params' => array(
                         'api_key' => $apiKey
