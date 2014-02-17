@@ -1,7 +1,7 @@
 <?php
 
 $clientParameter = array(
-    'description' => 'Client id',
+    'description' => 'Client',
     'location' => 'json',
     'type' => 'object',
     'sentAs' => 'client',
@@ -205,7 +205,7 @@ $clientParameter = array(
         ),
         'discount_rate' => array(
             'description' => 'Discount rate',
-            'type' => 'double',
+            'type' => 'number',
             'sentAs' => 'discount_rate',
             'required' => false,
         ),
@@ -265,6 +265,94 @@ $clientParameter = array(
             'description' => 'Articles can have several prices. The pricegroup defines which price applies to the client.',
             'type' => 'integer',
             'sentAs' => 'price_group',
+            'required' => false,
+        ),
+    )
+);
+
+$articleParameter = array(
+    'description' => 'Article',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'article',
+    'required' => true,
+    'properties' => array(
+        'number_pre' => array(
+            'description' => 'Prefix. Default: Value from settings',
+            'type' => 'string',
+            'sentAs' => 'number_pre',
+            'required' => false,
+        ),
+        'number' => array(
+            'description' => 'Sequential number. Default: Next free number',
+            'type' => 'integer',
+            'sentAs' => 'number',
+            'required' => false,
+        ),
+        'number_length' => array(
+            'description' => 'Minimum length of the article number (to be filled with leading zeros). Default: Value from settings',
+            'type' => 'integer',
+            'sentAs' => 'number_length',
+            'required' => false,
+        ),
+        'title' => array(
+            'description' => 'Title',
+            'type' => 'string',
+            'sentAs' => 'title',
+            'required' => false,
+        ),
+        'description' => array(
+            'description' => 'Description',
+            'type' => 'string',
+            'sentAs' => 'description',
+            'required' => false,
+        ),
+        'sales_price' => array(
+            'description' => 'Price',
+            'type' => 'number',
+            'sentAs' => 'sales_price',
+            'required' => false,
+        ),
+        'sales_price2' => array(
+            'description' => 'Price for clients which are members of pricegroup 2. The normal price is used if no price is defined.',
+            'type' => 'number',
+            'sentAs' => 'sales_price2',
+            'required' => false,
+        ),
+        'sales_price3' => array(
+            'description' => 'Price for clients which are members of pricegroup 3. The normal price is used if no price is defined.',
+            'type' => 'number',
+            'sentAs' => 'sales_price3',
+            'required' => false,
+        ),
+        'sales_price4' => array(
+            'description' => 'Price for clients which are members of pricegroup 4. The normal price is used if no price is defined.',
+            'type' => 'number',
+            'sentAs' => 'sales_price4',
+            'required' => false,
+        ),
+        'sales_price5' => array(
+            'description' => 'Price for clients which are members of pricegroup 5. The normal price is used if no price is defined.',
+            'type' => 'number',
+            'sentAs' => 'sales_price5',
+            'required' => false,
+        ),
+        'currency_code' => array(
+            'description' => 'ISO currency code',
+            'type' => 'string',
+            'sentAs' => 'currency_code',
+            'required' => false,
+        ),
+        'unit_id' => array(
+            'description' => 'ID of the chosen unit',
+            'type' => 'integer',
+            'sentAs' => 'unit_id',
+            'required' => false,
+        ),
+        'tax_id' => array(
+            'description' => 'ID of the chosen tax rate',
+            'type' => 'integer',
+            'sentAs' => 'tax_id',
             'required' => false,
         ),
     )
@@ -455,6 +543,157 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Client id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * ARTICLE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetArticles' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/articles',
+            'summary'          => 'List all articles',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'article_number'  => array(
+                    'description' => 'Article number',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'article_number',
+                    'required'    => false
+                ),
+                'title'  => array(
+                    'description' => 'Title',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'title',
+                    'required'    => false
+                ),
+                'description'  => array(
+                    'description' => 'Description',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'description',
+                    'required'    => false
+                ),
+                'currency_code'  => array(
+                    'description' => 'ISO code of the currency',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'currency_code',
+                    'required'    => false
+                ),
+                'unit_id'  => array(
+                    'description' => 'ID of the chosen unit',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'unit_id',
+                    'required'    => false
+                ),
+                'tags'  => array(
+                    'description' => 'Comma separated list of tags',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'tags',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetArticle' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/articles/{id}',
+            'summary'          => 'Show a specific article',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Article id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateArticle' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/articles',
+            'summary'          => 'Create an article',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'article'  => $articleParameter
+            )
+        ),
+
+        'UpdateArticle' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/articles/{id}',
+            'summary'          => 'Update an article',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Client id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'article'  => $articleParameter
+            )
+        ),
+
+        'DeleteArticle' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/articles/{id}',
+            'summary'          => 'Delete an article',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Article id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',

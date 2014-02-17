@@ -9,14 +9,20 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
 /**
  * Billomat client to interact with Billomat REST API
  *
- * ACCOUNT RELATED METHODS:
- *
+ * CLIENT RELATED METHODS:
  * @method array getClients(array $args = array()) {@command Billomat GetClients}
  * @method array getClient(array $args = array()) {@command Billomat GetClient}
  * @method array getClientMyself(array $args = array()) {@command Billomat GetClientMyself}
  * @method array createClient(array $args = array()) {@command Billomat CreateClient}
  * @method array updateClient(array $args = array()) {@command Billomat UpdateClient}
  * @method array deleteClient(array $args = array()) {@command Billomat DeleteClient}
+ *
+ * ARTICLE RELATED METHODS:
+ * @method array getArticles(array $args = array()) {@command Billomat GetArticles}
+ * @method array getArticle(array $args = array()) {@command Billomat GetArticle}
+ * @method array createArticle(array $args = array()) {@command Billomat CreateArticle}
+ * @method array updateArticle(array $args = array()) {@command Billomat UpdateArticle}
+ * @method array deleteArticle(array $args = array()) {@command Billomat DeleteArticle}
  *
  * @licence MIT
  */
