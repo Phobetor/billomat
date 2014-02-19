@@ -90,7 +90,27 @@ class BillomatClient extends Client
      */
     public function __call($method, $args = array())
     {
-        return parent::__call(ucfirst($method), $args);
+        $result = parent::__call(ucfirst($method), $args);
+
+        switch ($method) {
+            case 'getClients':
+            case 'getArticles':
+            case 'getInvoices':
+                foreach ($result as $listKey => $list) {
+                    if (is_array($list)) {
+                        foreach ($list as $itemKey => $item) {
+                            // this is an object
+                            if (!empty($item['id'])) {
+                                // make it a list
+                                $result[$listKey][$itemKey] = array($item);
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+
+        return $result;
     }
 
     /**
