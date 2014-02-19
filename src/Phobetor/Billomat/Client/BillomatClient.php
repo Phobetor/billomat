@@ -37,6 +37,13 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array undoCancelInvoice(array $args = array()) {@command Billomat UndoCancelInvoice}
  * @method array deleteInvoice(array $args = array()) {@command Billomat DeleteInvoice}
  *
+ * INVOICE ITEM RELATED METHODS:
+ * @method array getInvoiceItems(array $args = array()) {@command Billomat GetInvoiceItems}
+ * @method array getInvoiceItem(array $args = array()) {@command Billomat GetInvoiceItem}
+ * @method array createInvoiceItem(array $args = array()) {@command Billomat CreateInvoiceItem}
+ * @method array updateInvoiceItem(array $args = array()) {@command Billomat UpdateInvoiceItem}
+ * @method array deleteInvoiceItem(array $args = array()) {@command Billomat DeleteInvoiceItem}
+ *
  * @licence MIT
  */
 class BillomatClient extends Client
@@ -96,6 +103,7 @@ class BillomatClient extends Client
             case 'getClients':
             case 'getArticles':
             case 'getInvoices':
+            case 'getInvoiceItems':
                 foreach ($result as $listKey => $list) {
                     if (is_array($list)) {
                         foreach ($list as $itemKey => $item) {
