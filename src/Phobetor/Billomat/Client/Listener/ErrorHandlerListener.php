@@ -5,6 +5,7 @@ namespace Phobetor\Billomat\Client\Listener;
 use Guzzle\Common\Event;
 use Phobetor\Billomat\Exception\InvalidParameterException;
 use Phobetor\Billomat\Exception\ExceptionListException;
+use Phobetor\Billomat\Exception\NoResponseException;
 use Phobetor\Billomat\Exception\UnknownErrorException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -46,6 +47,10 @@ class ErrorHandlerListener implements EventSubscriberInterface
      */
     public function handleError(Event $event)
     {
+        if (empty($event['response']) || !$event['response'] instanceof \Guzzle\Http\Message\Response) {
+            throw new NoResponseException('No response found', 0);
+        }
+
         /** @var \Guzzle\Http\Message\Response $response */
         $response = $event['response'];
 
