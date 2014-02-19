@@ -24,6 +24,19 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateArticle(array $args = array()) {@command Billomat UpdateArticle}
  * @method array deleteArticle(array $args = array()) {@command Billomat DeleteArticle}
  *
+ * INVOICE RELATED METHODS:
+ * @method array getInvoices(array $args = array()) {@command Billomat GetInvoices}
+ * @method array getInvoice(array $args = array()) {@command Billomat GetInvoice}
+ * @method array createInvoice(array $args = array()) {@command Billomat CreateInvoice}
+ * @method array updateInvoice(array $args = array()) {@command Billomat UpdateInvoice}
+ * @method array completeInvoice(array $args = array()) {@command Billomat CompleteInvoice}
+ * @method array getInvoicePdf(array $args = array()) {@command Billomat GetInvoicePdf}
+ * @method array signInvoice(array $args = array()) {@command Billomat SignInvoice}
+ * @method array sendInvoiceEmail(array $args = array()) {@command Billomat SendInvoiceEmail}
+ * @method array cancelInvoice(array $args = array()) {@command Billomat CancelInvoice}
+ * @method array undoCancelInvoice(array $args = array()) {@command Billomat UndoCancelInvoice}
+ * @method array deleteInvoice(array $args = array()) {@command Billomat DeleteInvoice}
+ *
  * @licence MIT
  */
 class BillomatClient extends Client

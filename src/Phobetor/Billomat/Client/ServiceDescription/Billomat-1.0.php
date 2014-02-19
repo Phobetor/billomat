@@ -358,6 +358,248 @@ $articleParameter = array(
     )
 );
 
+$invoiceParameter = array(
+    'description' => 'Invoice',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'invoice',
+    'required' => true,
+    'properties' => array(
+        'client_id'  => array(
+            'description' => 'ID of the client',
+            'type'        => 'integer',
+            'sentAs'      => 'client_id',
+            'required'    => true
+        ),
+        'contact_id'  => array(
+            'description' => 'ID of the contact',
+            'type'        => 'integer',
+            'sentAs'      => 'contact_id',
+            'required'    => false
+        ),
+        'address' => array(
+            'description' => 'Address. Default: the client’s address',
+            'type' => 'string',
+            'sentAs' => 'address',
+            'required' => false,
+        ),
+        'number_pre' => array(
+            'description' => 'Invoice number prefix. Default: Value from settings',
+            'type' => 'string',
+            'sentAs' => 'number_pre',
+            'required' => false,
+        ),
+        'number' => array(
+            'description' => 'Sequential number. Default: Next free number',
+            'type' => 'integer',
+            'sentAs' => 'number',
+            'required' => false,
+        ),
+        'number_length' => array(
+            'description' => 'Minimum length of the invoice number (to be filled with leading zeros). Default: Value from settings',
+            'type' => 'integer',
+            'sentAs' => 'number_length',
+            'required' => false,
+        ),
+        'date' => array(
+            'description' => 'Invoice date. Default: today',
+            'type' => 'string',
+            'sentAs' => 'date',
+            'required' => false,
+        ),
+        'supply_date' => array(
+            'description' => 'supply/delivery date',
+            'type' => 'string',
+            'sentAs' => 'supply_date',
+            'required' => false,
+        ),
+        'supply_date_type' => array(
+            'description' => 'Type of supply/delivery date',
+            'type' => 'string',
+            'enum' => array('SUPPLY_DATE', 'DELIVERY_DATE', 'SUPPLY_TEXT', 'DELIVERY_TEXT'),
+            'sentAs' => 'supply_date_type',
+            'required' => false,
+        ),
+        'due_date' => array(
+            'description' => 'Due date. Default: date + due days taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'due_date',
+            'required' => false,
+        ),
+        'discount_rate' => array(
+            'description' => 'Cash discount. Default: Value from the settings',
+            'type' => 'number',
+            'sentAs' => 'discount_rate',
+            'required' => false,
+        ),
+        'discount_date' => array(
+            'description' => 'Cash discount date. Default: date + cash discount days taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'discount_date',
+            'required' => false,
+        ),
+        'title' => array(
+            'description' => 'Title of the document',
+            'type' => 'string',
+            'sentAs' => 'title',
+            'required' => false,
+        ),
+        'label' => array(
+            'description' => 'Label text to describe the project',
+            'type' => 'string',
+            'sentAs' => 'label',
+            'required' => false,
+        ),
+        'intro' => array(
+            'description' => 'Introductory text. Default: Value taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'intro',
+            'required' => false,
+        ),
+        'note' => array(
+            'description' => 'Explanatory notes. Default: Value taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'note',
+            'required' => false,
+        ),
+        'reduction' => array(
+            'description' => 'Reduction (absolute or percent: 10/10%)',
+            'type' => 'string',
+            'sentAs' => 'reduction',
+            'required' => false,
+        ),
+        'currency_code' => array(
+            'description' => 'ISO currency code. Default: default currency',
+            'type' => 'string',
+            'sentAs' => 'currency_code',
+            'required' => false,
+        ),
+        'net_gross' => array(
+            'description' => 'Price basis (gross or net prices). Default: Value taken from the settings',
+            'type' => 'string',
+            'enum' => array('NET', 'GROSS'),
+            'sentAs' => 'net_gross',
+            'required' => false,
+        ),
+        'quote' => array(
+            'description' => 'Currency quote (for conversion into standard currency). Default: 1.0000',
+            'type' => 'number',
+            'sentAs' => 'quote',
+            'required' => false,
+        ),
+        'payment_types' => array(
+            'description' => 'Comma separated list of all accepted payment types. Default: Value taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'payment_types',
+            'required' => false,
+        ),
+        'invoice_id' => array(
+            'description' => 'The ID of the corrected invoice, if it is an invoice correction.',
+            'type' => 'integer',
+            'sentAs' => 'invoice_id',
+            'required' => false,
+        ),
+        'offer_id' => array(
+            'description' => 'The ID of the estimate, if the invoice was created from an estimate.',
+            'type' => 'integer',
+            'sentAs' => 'offer_id',
+            'required' => false,
+        ),
+        'confirmation_id' => array(
+            'description' => 'The ID of the confirmation, if the invoice was created from a confirmation.',
+            'type' => 'integer',
+            'sentAs' => 'confirmation_id',
+            'required' => false,
+        ),
+        'recurring_id' => array(
+            'description' => 'The ID of the recurring, if the invoice was created from a recurring.',
+            'type' => 'integer',
+            'sentAs' => 'recurring_id',
+            'required' => false,
+        ),
+        'invoice-items' => array(
+            'description' => 'Invoice items',
+            'type' => 'object',
+            'sentAs' => 'invoice-items',
+            'required' => false,
+            'properties' => array(
+                'invoice-item' => array(
+                    'description' => 'Invoice items',
+                    'type' => 'array',
+                    'sentAs' => 'invoice-item',
+                    'required' => false,
+                    'items' => array(
+                        'description' => 'Invoice item',
+                        'type' => 'object',
+                        'properties' => array(
+                            'invoice_id' => array(
+                                'description' => 'ID of the invoice',
+                                'type' => 'integer',
+                                'sentAs' => 'invoice_id',
+                                'required' => false,
+                            ),
+                            'article_id' => array(
+                                'description' => 'ID of the article, sets additionally the values from the article on creation',
+                                'type' => 'integer',
+                                'sentAs' => 'article_id',
+                                'required' => false,
+                            ),
+                            'unit' => array(
+                                'description' => 'Unit',
+                                'type' => 'string',
+                                'sentAs' => 'unit',
+                                'required' => false,
+                            ),
+                            'quantity' => array(
+                                'description' => 'Quantity',
+                                'type' => 'number',
+                                'sentAs' => 'quantity',
+                                'required' => false,
+                            ),
+                            'unit_price' => array(
+                                'description' => 'Price per unit. Default: 0.0000',
+                                'type' => 'number',
+                                'sentAs' => 'unit_price',
+                                'required' => false,
+                            ),
+                            'tax_name' => array(
+                                'description' => 'Name of the tax. Default: Value taken from the settings',
+                                'type' => 'string',
+                                'sentAs' => 'tax_name',
+                                'required' => false,
+                            ),
+                            'tax_rate' => array(
+                                'description' => 'Rate of taxation. Default: Value taken from the settings',
+                                'type' => 'number',
+                                'sentAs' => 'tax_rate',
+                                'required' => false,
+                            ),
+                            'title' => array(
+                                'description' => 'Title',
+                                'type' => 'string',
+                                'sentAs' => 'title',
+                                'required' => false,
+                            ),
+                            'description' => array(
+                                'description' => 'Description',
+                                'type' => 'string',
+                                'sentAs' => 'description',
+                                'required' => false,
+                            ),
+                            'reduction' => array(
+                                'description' => 'Reduction (absolute or percent: 10/10%)',
+                                'type' => 'string',
+                                'sentAs' => 'reduction',
+                                'required' => false,
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        )
+    )
+);
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -601,7 +843,7 @@ return array(
                 'unit_id'  => array(
                     'description' => 'ID of the chosen unit',
                     'location'    => 'query',
-                    'type'        => 'string',
+                    'type'        => 'integer',
                     'sentAs'      => 'unit_id',
                     'required'    => false
                 ),
@@ -669,7 +911,7 @@ return array(
                     'required'    => true
                 ),
                 'id'  => array(
-                    'description' => 'Client id',
+                    'description' => 'Article id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
@@ -694,6 +936,473 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Article id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * INVOICE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetInvoices' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/invoices',
+            'summary'          => 'List all invoices',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'client_id'  => array(
+                    'description' => 'ID of the client',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'client_id',
+                    'required'    => false
+                ),
+                'contact_id'  => array(
+                    'description' => 'ID of the contact',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'contact_id',
+                    'required'    => false
+                ),
+                'invoice_number'  => array(
+                    'description' => 'Invoice number',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'invoice_number',
+                    'required'    => false
+                ),
+                'status'  => array(
+                    'description' => 'Comma separated list of logically OR-connected statuses',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'status',
+                    'required'    => false
+                ),
+                'payment_type'  => array(
+                    'description' => 'Comma separated list of logically OR-connected payment types',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'payment_type',
+                    'required'    => false
+                ),
+                'from'  => array(
+                    'description' => 'Only show invoices since this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'from',
+                    'required'    => false
+                ),
+                'to'  => array(
+                    'description' => 'Only show invoices up to this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'to',
+                    'required'    => false
+                ),
+                'label'  => array(
+                    'description' => 'Free text search in label text',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'label',
+                    'required'    => false
+                ),
+                'intro'  => array(
+                    'description' => 'Free text search in introductory text',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'intro',
+                    'required'    => false
+                ),
+                'note'  => array(
+                    'description' => 'Free text search in explanatory notes',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'note',
+                    'required'    => false
+                ),
+                'tags'  => array(
+                    'description' => 'Comma separated list of tags',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'tags',
+                    'required'    => false
+                ),
+                'group_by'  => array(
+                    'description' => 'Grouping parameter',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum' => array('client', 'status', 'day', 'week', 'month', 'year'),
+                    'sentAs'      => 'group_by',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetInvoice' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/invoices/{id}',
+            'summary'          => 'Show a specific invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateInvoice' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/invoices',
+            'summary'          => 'Create an invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'invoice'  => $invoiceParameter
+            )
+        ),
+
+        'UpdateInvoice' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/invoices/{id}',
+            'summary'          => 'Update an invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'invoice'  => $invoiceParameter
+            )
+        ),
+
+        'CompleteInvoice' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/invoices/{id}/complete',
+            'summary'          => 'Complete an invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'complete'  => array(
+                    'description' => 'Invoice complete data',
+                    'location' => 'json',
+                    'type' => 'object',
+                    'sentAs' => 'complete',
+                    'required' => true,
+                    'properties' => array(
+                        'template_id' => array(
+                            'description' => 'ID of the template to complete the invoice with',
+                            'type' => 'integer',
+                            'sentAs' => 'template_id',
+                            'required' => false,
+                        )
+                    )
+                )
+            )
+        ),
+
+        'GetInvoicePdf' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/invoices/{id}/pdf',
+            'summary'          => 'Open pdf of an invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'accept'  => array(
+                    'description' => 'Accept header',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'enum' => array('application/pdf'),
+                    'sentAs'      => 'Accept',
+                    'required'    => false
+                ),
+                'format'  => array(
+                    'description' => 'Response format',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum' => array('pdf'),
+                    'sentAs'      => 'format',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'SignInvoice' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/invoices/{id}/upload-signature',
+            'summary'          => 'Upload a digital signature for a given invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'signature'  => array(
+                    'description' => 'Digital signature',
+                    'location' => 'json',
+                    'type' => 'object',
+                    'sentAs' => 'signature',
+                    'required' => true,
+                    'properties' => array(
+                        'base64file' => array(
+                            'description' => 'Base64 encoded PDF with digital signature',
+                            'type' => 'string',
+                            'sentAs' => 'base64file',
+                            'required' => true,
+                        )
+                    )
+                )
+            )
+        ),
+
+        'SendInvoiceEmail' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/invoices/{id}/email',
+            'summary'          => 'Send invoice by e-mail',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'email'  => array(
+                    'description' => 'Email data',
+                    'location' => 'json',
+                    'type' => 'object',
+                    'sentAs' => 'email',
+                    'required' => true,
+                    'properties' => array(
+                        'from' => array(
+                            'description' => 'Sender email address. Default: email from the settings',
+                            'type' => 'string',
+                            'sentAs' => 'from',
+                            'required' => false,
+                        ),
+                        'recipients' => array(
+                            'description' => 'Recipients of the e-mail. There must be at least one of "to", "cc" and/or "bcc"',
+                            'type' => 'object',
+                            'sentAs' => 'recipients',
+                            'required' => true,
+                            'properties' => array(
+                                'to' => array(
+                                    'description' => 'Recipient email address',
+                                    'type' => 'string',
+                                    'sentAs' => 'to',
+                                    'required' => false,
+                                ),
+                                'cc' => array(
+                                    'description' => 'CC Recipient',
+                                    'type' => 'string',
+                                    'sentAs' => 'cc',
+                                    'required' => false,
+                                ),
+                                'bcc' => array(
+                                    'description' => 'BCC Recipient',
+                                    'type' => 'string',
+                                    'sentAs' => 'bcc',
+                                    'required' => false,
+                                ),
+                            ),
+                        ),
+                        'subject' => array(
+                            'description' => 'Subject of the e-mail (may include placeholders). Default: Value taken from the settings',
+                            'type' => 'string',
+                            'sentAs' => 'subject',
+                            'required' => false,
+                        ),
+                        'body' => array(
+                            'description' => 'Text of the e-mail (may include placeholders). Default: Value taken from the settings',
+                            'type' => 'string',
+                            'sentAs' => 'body',
+                            'required' => false,
+                        ),
+                        'filename' => array(
+                            'description' => 'Name of the PDF file (without .pdf). Default: invoice_{id}',
+                            'type' => 'string',
+                            'sentAs' => 'filename',
+                            'required' => false,
+                        ),
+                        'attachments' => array(
+                            'description' => 'Further files',
+                            'type' => 'array',
+                            'sentAs' => 'attachments',
+                            'required' => false,
+                            'items' => array(
+                                'type' => 'object',
+                                'sendAs' => 'attachment',
+                                'properties' => array(
+                                    'filename' => array(
+                                        'description' => 'Filename',
+                                        'type' => 'string',
+                                        'sentAs' => 'filename',
+                                        'required' => true,
+                                    ),
+                                    'mimetype' => array(
+                                        'description' => 'Mime type',
+                                        'type' => 'string',
+                                        'sentAs' => 'mimetype',
+                                        'required' => true,
+                                    ),
+                                    'base64file' => array(
+                                        'description' => 'Base64 encoded file',
+                                        'type' => 'string',
+                                        'sentAs' => 'base64file',
+                                        'required' => true,
+                                    ),
+                                ),
+                            ),
+                        )
+                    )
+                )
+            )
+        ),
+
+        'CancelInvoice' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/invoices/{id}/cancel',
+            'summary'          => 'Cancel an invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'UndoCancelInvoice' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/invoices/{id}/uncancel',
+            'summary'          => 'Undo invoice cancellation',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'DeleteInvoice' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/invoices/{id}',
+            'summary'          => 'Delete an invoice',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Invoice id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
