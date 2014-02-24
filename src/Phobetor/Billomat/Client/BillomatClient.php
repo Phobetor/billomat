@@ -17,6 +17,11 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateClient(array $args = array()) {@command Billomat UpdateClient}
  * @method array deleteClient(array $args = array()) {@command Billomat DeleteClient}
  *
+ * CLIENT PROPERTY VALUE RELATED METHODS:
+ * @method array getClientPropertyValues(array $args = array()) {@command Billomat GetClientPropertyValues}
+ * @method array getClientPropertyValue(array $args = array()) {@command Billomat GetClientPropertyValue}
+ * @method array setClientPropertyValue(array $args = array()) {@command Billomat SetClientPropertyValue}
+ *
  * ARTICLE RELATED METHODS:
  * @method array getArticles(array $args = array()) {@command Billomat GetArticles}
  * @method array getArticle(array $args = array()) {@command Billomat GetArticle}
@@ -101,6 +106,7 @@ class BillomatClient extends Client
 
         switch ($method) {
             case 'getClients':
+            case 'getClientPropertyValues':
             case 'getArticles':
             case 'getInvoices':
             case 'getInvoiceItems':

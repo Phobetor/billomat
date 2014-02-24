@@ -270,6 +270,34 @@ $clientParameter = array(
     )
 );
 
+$clientPropertyValueParameter = array(
+    'description' => 'Client property value',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'client-property-value',
+    'required' => true,
+    'properties' => array(
+        'client_id' => array(
+            'description' => 'ID of the client',
+            'type' => 'integer',
+            'sentAs' => 'client_id',
+            'required' => true,
+        ),
+        'client_property_id' => array(
+            'description' => 'ID of the property',
+            'type' => 'integer',
+            'sentAs' => 'client_property_id',
+            'required' => true,
+        ),
+        'value' => array(
+            'description' => 'Property value',
+            'type' => 'string',
+            'sentAs' => 'value',
+            'required' => true,
+        )
+    )
+);
+
 $articleParameter = array(
     'description' => 'Article',
     'location' => 'json',
@@ -797,6 +825,82 @@ return array(
                     'sentAs'      => 'id',
                     'required'    => true
                 )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * CLIENT PROPERTY VALUE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetClientPropertyValues' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/client-property-values',
+            'summary'          => 'List all client property values',
+            'documentationUrl' => 'http://www.billomat.com/en/api/clients/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'client_id'  => array(
+                    'description' => 'ID of a client',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'client_id',
+                    'required'    => false
+                ),
+                'client_property_id'  => array(
+                    'description' => 'ID of a property',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'client_property_id',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetClientPropertyValue' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/client-property-values/{id}',
+            'summary'          => 'Get a specific property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/clients/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Client property value id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'SetClientPropertyValue' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/client-property-values',
+            'summary'          => 'Set a specific client property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/clients/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'client-property-value'  => $clientPropertyValueParameter
             )
         ),
 
