@@ -179,7 +179,7 @@ $clientParameter = array(
         'tax_rule' => array(
             'description' => 'Tax Rule',
             'type' => 'string',
-            'enum' => array('TAX', 'NO_TAX', 'COUNTRY', 'BALLZ'),
+            'enum' => array('TAX', 'NO_TAX', 'COUNTRY'),
             'sentAs' => 'tax_rule',
             'required' => false,
         ),
@@ -635,6 +635,47 @@ $invoiceParameter = array(
     )
 );
 
+$templateParameter = array(
+    'description' => 'Template',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'template',
+    'required' => true,
+    'properties' => array(
+        'name'  => array(
+            'description' => 'Name of the template',
+            'type'        => 'string',
+            'sentAs'      => 'name',
+            'required'    => false
+        ),
+        'type'  => array(
+            'description' => 'Template type',
+            'type'        => 'string',
+            'enum'        => array('INVOICE', 'OFFER', 'CONFIRMATION', 'REMINDER', 'DELIVERY_NOTE', 'CREDIT_NOTE'),
+            'sentAs'      => 'type',
+            'required'    => false
+        ),
+        'format'  => array(
+            'description' => 'Format',
+            'type'        => 'string',
+            'enum'        => array('doc', 'docx', 'rtf'),
+            'sentAs'      => 'format',
+            'required'    => false
+        ),
+        'base64file'  => array(
+            'description' => 'base64 coded template file',
+            'type'        => 'string',
+            'sentAs'      => 'base64file',
+            'required'    => false
+        ),
+    )
+);
+
+$templateParameterCreate = $templateParameter;
+foreach ($templateParameterCreate['properties'] as $key => $property) {
+    $templateParameterCreate['properties'][$key]['required'] = true;
+}
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -658,6 +699,20 @@ return array(
                     'type'        => 'string',
                     'sentAs'      => 'X-BillomatApiKey',
                     'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
                 ),
                 'name'  => array(
                     'description' => 'Company name',
@@ -847,6 +902,20 @@ return array(
                     'sentAs'      => 'X-BillomatApiKey',
                     'required'    => true
                 ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                ),
                 'client_id'  => array(
                     'description' => 'ID of a client',
                     'location'    => 'query',
@@ -922,6 +991,20 @@ return array(
                     'type'        => 'string',
                     'sentAs'      => 'X-BillomatApiKey',
                     'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
                 ),
                 'article_number'  => array(
                     'description' => 'Article number',
@@ -1073,6 +1156,20 @@ return array(
                     'type'        => 'string',
                     'sentAs'      => 'X-BillomatApiKey',
                     'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
                 ),
                 'client_id'  => array(
                     'description' => 'ID of the client',
@@ -1541,6 +1638,20 @@ return array(
                     'sentAs'      => 'X-BillomatApiKey',
                     'required'    => true
                 ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                ),
                 'invoice_id'  => array(
                     'description' => 'ID of the invoice',
                     'location'    => 'query',
@@ -1555,7 +1666,7 @@ return array(
             'httpMethod'       => 'GET',
             'uri'              => '/api/invoice-items/{id}',
             'summary'          => 'Get a specific invoice item',
-            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices/items',
             'parameters'       => array(
                 'api_key'  => array(
                     'description' => 'Billomat API key',
@@ -1619,7 +1730,7 @@ return array(
             'httpMethod'       => 'DELETE',
             'uri'              => '/api/invoice-items/{id}',
             'summary'          => 'Delete an invoice item',
-            'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices/items',
             'parameters'       => array(
                 'api_key'  => array(
                     'description' => 'Billomat API key',
@@ -1630,6 +1741,168 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Invoice item id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * TEMPLATE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetTemplates' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/templates',
+            'summary'          => 'List all templates',
+            'documentationUrl' => 'http://www.billomat.com/en/api/templates',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'type'  => array(
+                    'description' => 'Type of the template',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum' => array('INVOICE', 'OFFER', 'CONFIRMATION', 'REMINDER', 'DELIVERY_NOTE', 'CREDIT_NOTE'),
+                    'sentAs'      => 'type',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetTemplate' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/templates/{id}',
+            'summary'          => 'Get a specific template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/templates',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Template id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'GetTemplatePreview' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/templates/{id}/thumb',
+            'summary'          => 'Get a specific template’s preview',
+            'documentationUrl' => 'http://www.billomat.com/en/api/templates',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Template id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'format'  => array(
+                    'description' => 'Format',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum'        => array('png', 'gif', 'jpg'),
+                    'sentAs'      => 'format',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'CreateTemplate' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/templates',
+            'summary'          => 'Create a template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/templates',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'template'  => $templateParameterCreate
+            )
+        ),
+
+        'UpdateTemplate' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/templates/{id}',
+            'summary'          => 'Update a template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/templates',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Template id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'template'  => $templateParameter
+            )
+        ),
+
+        'DeleteTemplate' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/templates/{id}',
+            'summary'          => 'Delete a template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/templates',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Template id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',

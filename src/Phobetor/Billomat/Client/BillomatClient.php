@@ -35,7 +35,7 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array createInvoice(array $args = array()) {@command Billomat CreateInvoice}
  * @method array updateInvoice(array $args = array()) {@command Billomat UpdateInvoice}
  * @method array completeInvoice(array $args = array()) {@command Billomat CompleteInvoice}
- * @method array getInvoicePdf(array $args = array()) {@command Billomat GetInvoicePdf}
+ * @method \Guzzle\Http\Message\Response getInvoicePdf(array $args = array()) {@command Billomat GetInvoicePdf}
  * @method array signInvoice(array $args = array()) {@command Billomat SignInvoice}
  * @method array sendInvoiceEmail(array $args = array()) {@command Billomat SendInvoiceEmail}
  * @method array cancelInvoice(array $args = array()) {@command Billomat CancelInvoice}
@@ -48,6 +48,14 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array createInvoiceItem(array $args = array()) {@command Billomat CreateInvoiceItem}
  * @method array updateInvoiceItem(array $args = array()) {@command Billomat UpdateInvoiceItem}
  * @method array deleteInvoiceItem(array $args = array()) {@command Billomat DeleteInvoiceItem}
+ *
+ * TEMPLATE RELATED METHODS:
+ * @method array getTemplates(array $args = array()) {@command Billomat GetTemplate}
+ * @method array getTemplate(array $args = array()) {@command Billomat GetTemplate}
+ * @method \Guzzle\Http\Message\Response getTemplatePreview(array $args = array()) {@command Billomat GetTemplatePreview}
+ * @method array createTemplate(array $args = array()) {@command Billomat CreateTemplate}
+ * @method array updateTemplate(array $args = array()) {@command Billomat UpdateTemplate}
+ * @method array deleteTemplate(array $args = array()) {@command Billomat DeleteTemplate}
  *
  * @licence MIT
  */
