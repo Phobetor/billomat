@@ -17,6 +17,13 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateClient(array $args = array()) {@command Billomat UpdateClient}
  * @method array deleteClient(array $args = array()) {@command Billomat DeleteClient}
  *
+ * CLIENT PROPERTY RELATED METHODS:
+ * @method array getClientProperties(array $args = array()) {@command Billomat GetClientProperties}
+ * @method array getClientProperty(array $args = array()) {@command Billomat GetClientProperty}
+ * @method array createClientProperty(array $args = array()) {@command Billomat CreateClientProperty}
+ * @method array updateClientProperty(array $args = array()) {@command Billomat UpdateClientProperty}
+ * @method array deleteClientProperty(array $args = array()) {@command Billomat DeleteClientProperty}
+ *
  * CLIENT PROPERTY VALUE RELATED METHODS:
  * @method array getClientPropertyValues(array $args = array()) {@command Billomat GetClientPropertyValues}
  * @method array getClientPropertyValue(array $args = array()) {@command Billomat GetClientPropertyValue}

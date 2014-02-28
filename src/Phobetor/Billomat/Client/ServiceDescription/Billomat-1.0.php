@@ -270,6 +270,45 @@ $clientParameter = array(
     )
 );
 
+$clientPropertyParameter = array(
+    'description' => 'Client property',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'client-property',
+    'required' => true,
+    'properties' => array(
+        'name' => array(
+            'description' => 'Name',
+            'type' => 'string',
+            'sentAs' => 'name',
+            'required' => false,
+        ),
+        'type' => array(
+            'description' => 'Type',
+            'type' => 'string',
+            'enum' => array('TEXTFIELD', 'TEXTAREA', 'CHECKBOX'),
+            'sentAs' => 'type',
+            'required' => false,
+        ),
+        'default_value' => array(
+            'description' => 'Default value',
+            'type' => 'string',
+            'sentAs' => 'default_value',
+            'required' => false,
+        ),
+        'is_nvl' => array(
+            'description' => 'Should the default value be used if there is no other value?',
+            'type' => 'integer',
+            'sentAs' => 'is_nvl',
+            'required' => false,
+        )
+    )
+);
+
+$clientPropertyParameterCreate = $clientPropertyParameter;
+$clientPropertyParameterCreate['properties']['name']['required'] = true;
+$clientPropertyParameterCreate['properties']['type']['required'] = true;
+
 $clientPropertyValueParameter = array(
     'description' => 'Client property value',
     'location' => 'json',
@@ -875,6 +914,129 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Client id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * CLIENT PROPERTY RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetClientProperties' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/client-properties',
+            'summary'          => 'List all client properties',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetClientProperty' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/client-properties/{id}',
+            'summary'          => 'Get a specific client property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Client property id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateClientProperty' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/client-properties',
+            'summary'          => 'Create a client property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'client-property'  => $clientPropertyParameterCreate
+            )
+        ),
+
+        'UpdateClientProperty' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/client-properties/{id}',
+            'summary'          => 'Update a specific client property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Client property id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'client-property'  => $clientPropertyParameter
+            )
+        ),
+
+        'DeleteClientProperty' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/client-properties/{id}',
+            'summary'          => 'Delete a specific client property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Client property id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
