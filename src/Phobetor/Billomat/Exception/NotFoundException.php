@@ -7,6 +7,6 @@ use RuntimeException;
 /**
  * @licence MIT
  */
-class InvalidParameterException extends RuntimeException implements ExceptionInterface
+class NotFoundException extends RuntimeException implements ExceptionInterface
 {
 }

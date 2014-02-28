@@ -3,9 +3,11 @@
 namespace Phobetor\Billomat\Client\Listener;
 
 use Guzzle\Common\Event;
-use Phobetor\Billomat\Exception\InvalidParameterException;
+use Phobetor\Billomat\Exception\BadRequestException;
 use Phobetor\Billomat\Exception\ExceptionListException;
 use Phobetor\Billomat\Exception\NoResponseException;
+use Phobetor\Billomat\Exception\NotFoundException;
+use Phobetor\Billomat\Exception\UnauthorizedException;
 use Phobetor\Billomat\Exception\UnknownErrorException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -16,20 +18,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ErrorHandlerListener implements EventSubscriberInterface
 {
-    /**
-     * List of Billomat error codes, that map to a Billomat exception
-     *
-     * @var array
-     */
-    private $errorMap = array(
-        'unknown error'             => 'Phobetor\Billomat\Exception\UnknownErrorException',
-        'resource not found'        => 'Phobetor\Billomat\Exception\ResourceNotFoundException',
-        // this is a typo in the error message, returned by the API
-        'ressource not found'       => 'Phobetor\Billomat\Exception\ResourceNotFoundException',
-        'row not found'             => 'Phobetor\Billomat\Exception\ResourceNotFoundException',
-        'not found'                 => 'Phobetor\Billomat\Exception\ResourceNotFoundException',
-        'no valid'                  => 'Phobetor\Billomat\Exception\InvalidParameterException',
-    );
+    const STATUS_OK             = 200;
+    const STATUS_CREATED        = 201;
+    const STATUS_BAD_REQUEST    = 400;
+    const STATUS_UNAUTHORIZED   = 401;
+    const STATUS_NOT_FOUND      = 404;
 
     /**
      * {@inheritDoc}
@@ -41,7 +34,7 @@ class ErrorHandlerListener implements EventSubscriberInterface
 
     /**
      * @internal
-     * @param  Event $event
+     * @param  \Guzzle\Common\Event $event
      * @return null
      * @throws \Phobetor\Billomat\Exception\ExceptionInterface
      */
@@ -55,8 +48,11 @@ class ErrorHandlerListener implements EventSubscriberInterface
         $response = $event['response'];
 
         $statusCode = $response->getStatusCode();
-        if ($statusCode === 200) {
-            return null;
+
+        switch ($statusCode) {
+            case self::STATUS_OK:
+            case self::STATUS_CREATED:
+                return null;
         }
 
         $result    = json_decode($response->getBody(), true);
@@ -66,12 +62,12 @@ class ErrorHandlerListener implements EventSubscriberInterface
             $exception = new ExceptionListException('', $statusCode);
             foreach ($errorName as $singleErrorName) {
                 $exception->addException(
-                    $this->createExceptionFromErrorMessage($singleErrorName, $statusCode)
+                    $this->createExceptionFromStatusCode($singleErrorName, $statusCode)
                 );
             }
         }
         else {
-            $exception = $this->createExceptionFromErrorMessage($errorName, $statusCode);
+            $exception = $this->createExceptionFromStatusCode($errorName, $statusCode);
         }
 
         throw $exception;
@@ -80,18 +76,20 @@ class ErrorHandlerListener implements EventSubscriberInterface
     /**
      * @param string $errorName
      * @param int $statusCode
-     * @return \Phobetor\Billomat\Exception\InvalidParameterException
+     * @return \Phobetor\Billomat\Exception\ExceptionInterface
      */
-    public function createExceptionFromErrorMessage($errorName, $statusCode)
+    public function createExceptionFromStatusCode($errorName, $statusCode)
     {
-        if (0 === stripos($errorName, 'No valid') || false !== stripos($errorName, 'Not valid') || false !== stripos($errorName, 'Invalid')) {
-            return new InvalidParameterException($errorName, $statusCode);
+        $exception = null;
+        switch ($statusCode) {
+            case self::STATUS_NOT_FOUND:
+                return new NotFoundException($errorName, $statusCode);
+            case self::STATUS_BAD_REQUEST:
+                return new BadRequestException($errorName, $statusCode);
+            case self::STATUS_UNAUTHORIZED:
+                return new UnauthorizedException($errorName, $statusCode);
+            default:
+                return new UnknownErrorException($errorName, $statusCode);
         }
-
-        if (empty($this->errorMap[strtolower($errorName)])) {
-            return new UnknownErrorException($errorName, $statusCode);
-        }
-
-        return new $this->errorMap[strtolower($errorName)]($errorName, $statusCode);
     }
 }

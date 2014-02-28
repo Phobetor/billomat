@@ -7,6 +7,6 @@ use RuntimeException;
 /**
  * @licence MIT
  */
-class ResourceNotFoundException extends RuntimeException implements ExceptionInterface
+class BadRequestException extends RuntimeException implements ExceptionInterface
 {
 }
