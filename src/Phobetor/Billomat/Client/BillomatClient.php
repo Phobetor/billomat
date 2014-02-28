@@ -64,6 +64,13 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateTemplate(array $args = array()) {@command Billomat UpdateTemplate}
  * @method array deleteTemplate(array $args = array()) {@command Billomat DeleteTemplate}
  *
+ * TAX RELATED METHODS:
+ * @method array getTaxes(array $args = array()) {@command Billomat GetTaxes}
+ * @method array getTax(array $args = array()) {@command Billomat GetTax}
+ * @method array createTax(array $args = array()) {@command Billomat CreateTax}
+ * @method array updateTax(array $args = array()) {@command Billomat UpdateTax}
+ * @method array deleteTax(array $args = array()) {@command Billomat DeleteTax}
+ *
  * @licence MIT
  */
 class BillomatClient extends Client

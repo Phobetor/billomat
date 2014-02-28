@@ -715,6 +715,40 @@ foreach ($templateParameterCreate['properties'] as $key => $property) {
     $templateParameterCreate['properties'][$key]['required'] = true;
 }
 
+$taxParameter = array(
+    'description' => 'Tax',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'tax',
+    'required' => true,
+    'properties' => array(
+        'name'  => array(
+            'description' => 'Name of the tax',
+            'type'        => 'string',
+            'sentAs'      => 'name',
+            'required'    => false
+        ),
+        'rate'  => array(
+            'description' => 'Tax rate in percent',
+            'type'        => 'numeric',
+            'sentAs'      => 'rate',
+            'required'    => false
+        ),
+        'is_default'  => array(
+            'description' => 'Specifies whether this is the standard tax rate',
+            'type'        => 'integer',
+            'enum'        => array(0, 1),
+            'sentAs'      => 'is_default',
+            'required'    => false
+        )
+    )
+);
+
+$taxParameterCreate = $taxParameter;
+foreach ($taxParameterCreate['properties'] as $key => $property) {
+    $taxParameterCreate['properties'][$key]['required'] = true;
+}
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -2065,6 +2099,129 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Template id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * TAX RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetTaxes' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/taxes',
+            'summary'          => 'List all taxes',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetTax' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/taxes/{id}',
+            'summary'          => 'Get a specific tax',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Tax id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateTax' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/taxes',
+            'summary'          => 'Create a tax',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'tax'  => $taxParameterCreate
+            )
+        ),
+
+        'UpdateTax' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/taxes/{id}',
+            'summary'          => 'Update a tax',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Tax id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'tax'  => $taxParameter
+            )
+        ),
+
+        'DeleteTax' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/taxes/{id}',
+            'summary'          => 'Delete a tax',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Tax id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
