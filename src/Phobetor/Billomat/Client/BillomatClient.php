@@ -17,13 +17,6 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateClient(array $args = array()) {@command Billomat UpdateClient}
  * @method array deleteClient(array $args = array()) {@command Billomat DeleteClient}
  *
- * CLIENT PROPERTY RELATED METHODS:
- * @method array getClientProperties(array $args = array()) {@command Billomat GetClientProperties}
- * @method array getClientProperty(array $args = array()) {@command Billomat GetClientProperty}
- * @method array createClientProperty(array $args = array()) {@command Billomat CreateClientProperty}
- * @method array updateClientProperty(array $args = array()) {@command Billomat UpdateClientProperty}
- * @method array deleteClientProperty(array $args = array()) {@command Billomat DeleteClientProperty}
- *
  * CLIENT PROPERTY VALUE RELATED METHODS:
  * @method array getClientPropertyValues(array $args = array()) {@command Billomat GetClientPropertyValues}
  * @method array getClientPropertyValue(array $args = array()) {@command Billomat GetClientPropertyValue}
@@ -63,6 +56,27 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array createTemplate(array $args = array()) {@command Billomat CreateTemplate}
  * @method array updateTemplate(array $args = array()) {@command Billomat UpdateTemplate}
  * @method array deleteTemplate(array $args = array()) {@command Billomat DeleteTemplate}
+ *
+ * ARTICLE PROPERTY RELATED METHODS:
+ * @method array getArticleProperties(array $args = array()) {@command Billomat GetArticleProperties}
+ * @method array getArticleProperty(array $args = array()) {@command Billomat GetArticleProperty}
+ * @method array createArticleProperty(array $args = array()) {@command Billomat CreateArticleProperty}
+ * @method array updateArticleProperty(array $args = array()) {@command Billomat UpdateArticleProperty}
+ * @method array deleteArticleProperty(array $args = array()) {@command Billomat DeleteArticleProperty}
+ *
+ * CLIENT PROPERTY RELATED METHODS:
+ * @method array getClientProperties(array $args = array()) {@command Billomat GetClientProperties}
+ * @method array getClientProperty(array $args = array()) {@command Billomat GetClientProperty}
+ * @method array createClientProperty(array $args = array()) {@command Billomat CreateClientProperty}
+ * @method array updateClientProperty(array $args = array()) {@command Billomat UpdateClientProperty}
+ * @method array deleteClientProperty(array $args = array()) {@command Billomat DeleteClientProperty}
+ *
+ * USER PROPERTY RELATED METHODS:
+ * @method array getUserProperties(array $args = array()) {@command Billomat GetUserProperties}
+ * @method array getUserProperty(array $args = array()) {@command Billomat GetUserProperty}
+ * @method array createUserProperty(array $args = array()) {@command Billomat CreateUserProperty}
+ * @method array updateUserProperty(array $args = array()) {@command Billomat UpdateUserProperty}
+ * @method array deleteUserProperty(array $args = array()) {@command Billomat DeleteUserProperty}
  *
  * TAX RELATED METHODS:
  * @method array getTaxes(array $args = array()) {@command Billomat GetTaxes}
