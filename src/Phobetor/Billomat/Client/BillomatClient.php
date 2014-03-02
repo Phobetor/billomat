@@ -92,6 +92,13 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateCountryTax(array $args = array()) {@command Billomat UpdateCountryTax}
  * @method array deleteCountryTax(array $args = array()) {@command Billomat DeleteCountryTax}
  *
+ * REMINDER TEXT RELATED METHODS:
+ * @method array getReminderTexts(array $args = array()) {@command Billomat GetReminderTexts}
+ * @method array getReminderText(array $args = array()) {@command Billomat GetReminderText}
+ * @method array createReminderText(array $args = array()) {@command Billomat CreateReminderText}
+ * @method array updateReminderText(array $args = array()) {@command Billomat UpdateReminderText}
+ * @method array deleteReminderText(array $args = array()) {@command Billomat DeleteReminderText}
+ *
  * @licence MIT
  */
 class BillomatClient extends Client
@@ -159,6 +166,7 @@ class BillomatClient extends Client
             case 'getUserProperties':
             case 'getTaxes':
             case 'getCountryTaxes':
+            case 'getReminderTexts':
                 foreach ($result as $listKey => $list) {
                     if (is_array($list)) {
                         foreach ($list as $itemKey => $item) {

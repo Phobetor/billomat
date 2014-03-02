@@ -789,6 +789,64 @@ $countryTaxParameter = array(
     )
 );
 
+$reminderTextParameter = array(
+    'description' => 'Reminder text',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'reminder-text',
+    'required' => true,
+    'properties' => array(
+        'sorting'  => array(
+            'description' => 'Sorting of this reminder text. Default: at the end of the list',
+            'type'        => 'integer',
+            'sentAs'      => 'sorting',
+            'required'    => false
+        ),
+        'name'  => array(
+            'description' => 'Name (for internal use)',
+            'type'        => 'string',
+            'sentAs'      => 'name',
+            'required'    => false
+        ),
+        'subject'  => array(
+            'description' => 'Subject',
+            'type'        => 'string',
+            'sentAs'      => 'subject',
+            'required'    => false
+        ),
+        'header'  => array(
+            'description' => 'Introductory text',
+            'type'        => 'string',
+            'sentAs'      => 'header',
+            'required'    => false
+        ),
+        'footer'  => array(
+            'description' => 'Explanatory notes',
+            'type'        => 'string',
+            'sentAs'      => 'footer',
+            'required'    => false
+        ),
+        'charge_name'  => array(
+            'description' => 'Name of charge (if present)',
+            'type'        => 'string',
+            'sentAs'      => 'charge_name',
+            'required'    => false
+        ),
+        'charge_description'  => array(
+            'description' => 'Description of charge (if present)',
+            'type'        => 'string',
+            'sentAs'      => 'charge_description',
+            'required'    => false
+        ),
+        'charge_amount'  => array(
+            'description' => 'Amount of charge (if present)',
+            'type'        => 'numeric',
+            'sentAs'      => 'charge_amount',
+            'required'    => false
+        )
+    )
+);
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -2631,6 +2689,129 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Tax free country id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * REMINDER TEXT RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetReminderTexts' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/reminder-texts',
+            'summary'          => 'List all reminder texts',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetReminderText' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/reminder-texts/{id}',
+            'summary'          => 'Get a specific reminder text',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Reminder text id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateReminderText' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/reminder-texts',
+            'summary'          => 'Create a reminder text',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'reminder-text'  => $reminderTextParameter
+            )
+        ),
+
+        'UpdateReminderText' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/reminder-texts/{id}',
+            'summary'          => 'Update a reminder text',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Reminder text id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'reminder-text'  => $reminderTextParameter
+            )
+        ),
+
+        'DeleteReminderText' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/reminder-texts/{id}',
+            'summary'          => 'Delete a reminder text',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Reminder text id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
