@@ -940,6 +940,13 @@ return array(
                     'sentAs'      => 'page',
                     'required'    => false
                 ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
+                ),
                 'name'  => array(
                     'description' => 'Company name',
                     'location'    => 'query',
@@ -1142,6 +1149,13 @@ return array(
                     'sentAs'      => 'page',
                     'required'    => false
                 ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
+                ),
                 'client_id'  => array(
                     'description' => 'ID of a client',
                     'location'    => 'query',
@@ -1230,6 +1244,13 @@ return array(
                     'location'    => 'query',
                     'type'        => 'integer',
                     'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
                     'required'    => false
                 ),
                 'article_number'  => array(
@@ -1395,6 +1416,13 @@ return array(
                     'location'    => 'query',
                     'type'        => 'integer',
                     'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
                     'required'    => false
                 ),
                 'client_id'  => array(
@@ -1878,6 +1906,13 @@ return array(
                     'sentAs'      => 'page',
                     'required'    => false
                 ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
+                ),
                 'invoice_id'  => array(
                     'description' => 'ID of the invoice',
                     'location'    => 'query',
@@ -2006,6 +2041,13 @@ return array(
                     'location'    => 'query',
                     'type'        => 'integer',
                     'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
                     'required'    => false
                 ),
                 'type'  => array(
@@ -2169,6 +2211,13 @@ return array(
                     'type'        => 'integer',
                     'sentAs'      => 'page',
                     'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
                 )
             )
         ),
@@ -2291,6 +2340,13 @@ return array(
                     'location'    => 'query',
                     'type'        => 'integer',
                     'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
                     'required'    => false
                 )
             )
@@ -2415,6 +2471,13 @@ return array(
                     'type'        => 'integer',
                     'sentAs'      => 'page',
                     'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
                 )
             )
         ),
@@ -2537,6 +2600,13 @@ return array(
                     'location'    => 'query',
                     'type'        => 'integer',
                     'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
                     'required'    => false
                 )
             )
@@ -2661,6 +2731,13 @@ return array(
                     'type'        => 'integer',
                     'sentAs'      => 'page',
                     'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
                 )
             )
         ),
@@ -2784,6 +2861,13 @@ return array(
                     'type'        => 'integer',
                     'sentAs'      => 'page',
                     'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
                 )
             )
         ),
@@ -2906,6 +2990,13 @@ return array(
                     'location'    => 'query',
                     'type'        => 'integer',
                     'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
                     'required'    => false
                 )
             )
