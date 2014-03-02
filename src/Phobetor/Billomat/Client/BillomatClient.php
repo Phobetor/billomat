@@ -85,6 +85,13 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateTax(array $args = array()) {@command Billomat UpdateTax}
  * @method array deleteTax(array $args = array()) {@command Billomat DeleteTax}
  *
+ * COUNTRY TAX RELATED METHODS:
+ * @method array getCountryTaxes(array $args = array()) {@command Billomat GetCountryTaxes}
+ * @method array getCountryTax(array $args = array()) {@command Billomat GetCountryTax}
+ * @method array createCountryTax(array $args = array()) {@command Billomat CreateCountryTax}
+ * @method array updateCountryTax(array $args = array()) {@command Billomat UpdateCountryTax}
+ * @method array deleteCountryTax(array $args = array()) {@command Billomat DeleteCountryTax}
+ *
  * @licence MIT
  */
 class BillomatClient extends Client
@@ -151,6 +158,7 @@ class BillomatClient extends Client
             case 'getClientProperties':
             case 'getUserProperties':
             case 'getTaxes':
+            case 'getCountryTaxes':
                 foreach ($result as $listKey => $list) {
                     if (is_array($list)) {
                         foreach ($list as $itemKey => $item) {

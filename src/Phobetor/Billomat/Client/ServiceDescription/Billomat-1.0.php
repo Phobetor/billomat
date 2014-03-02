@@ -773,6 +773,22 @@ foreach ($taxParameterCreate['properties'] as $key => $property) {
     $taxParameterCreate['properties'][$key]['required'] = true;
 }
 
+$countryTaxParameter = array(
+    'description' => 'Tax free country',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'country-tax',
+    'required' => true,
+    'properties' => array(
+        'country_code'  => array(
+            'description' => 'Country code as ISO 3166 Alpha-2',
+            'type'        => 'string',
+            'sentAs'      => 'country_code',
+            'required'    => true
+        )
+    )
+);
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -2492,6 +2508,129 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Tax id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * COUNTRY TAX RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetCountryTaxes' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/country-taxes',
+            'summary'          => 'List all tax free countries',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetCountryTax' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/country-taxes/{id}',
+            'summary'          => 'Get a specific tax free country',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Tax free country id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateCountryTax' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/country-taxes',
+            'summary'          => 'Create a tax free country',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'country-tax'  => $countryTaxParameter
+            )
+        ),
+
+        'UpdateCountryTax' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/country-taxes/{id}',
+            'summary'          => 'Update a tax free country',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Tax free country id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'country-tax'  => $countryTaxParameter
+            )
+        ),
+
+        'DeleteCountryTax' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/country-taxes/{id}',
+            'summary'          => 'Delete a tax free country',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Tax free country id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
