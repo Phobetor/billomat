@@ -29,6 +29,11 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateArticle(array $args = array()) {@command Billomat UpdateArticle}
  * @method void deleteArticle(array $args = array()) {@command Billomat DeleteArticle}
  *
+ * ARTICLE PROPERTY VALUE RELATED METHODS:
+ * @method array getArticlePropertyValues(array $args = array()) {@command Billomat GetArticlePropertyValues}
+ * @method array getArticlePropertyValue(array $args = array()) {@command Billomat GetArticlePropertyValue}
+ * @method array setArticlePropertyValue(array $args = array()) {@command Billomat SetArticlePropertyValue}
+ *
  * INVOICE RELATED METHODS:
  * @method array getInvoices(array $args = array()) {@command Billomat GetInvoices}
  * @method array getInvoice(array $args = array()) {@command Billomat GetInvoice}
@@ -106,6 +111,11 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateEmailTemplate(array $args = array()) {@command Billomat UpdateEmailTemplate}
  * @method void deleteEmailTemplate(array $args = array()) {@command Billomat DeleteEmailTemplate}
  *
+ * USER PROPERTY VALUE RELATED METHODS:
+ * @method array getUserPropertyValues(array $args = array()) {@command Billomat GetUserPropertyValues}
+ * @method array getUserPropertyValue(array $args = array()) {@command Billomat GetUserPropertyValue}
+ * @method array setUserPropertyValue(array $args = array()) {@command Billomat SetUserPropertyValue}
+ *
  * @licence MIT
  */
 class BillomatClient extends Client
@@ -165,6 +175,7 @@ class BillomatClient extends Client
             case 'getClients':
             case 'getClientPropertyValues':
             case 'getArticles':
+            case 'getArticlePropertyValues':
             case 'getInvoices':
             case 'getInvoiceItems':
             case 'getTemplates':
@@ -175,6 +186,7 @@ class BillomatClient extends Client
             case 'getCountryTaxes':
             case 'getReminderTexts':
             case 'getEmailTemplates':
+            case 'getUserPropertyValues':
                 foreach ($result as $listKey => $list) {
                     if (is_array($list)) {
                         foreach ($list as $itemKey => $item) {

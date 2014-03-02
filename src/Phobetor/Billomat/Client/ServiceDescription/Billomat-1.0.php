@@ -386,6 +386,34 @@ $articleParameter = array(
     )
 );
 
+$articlePropertyValueParameter = array(
+    'description' => 'Article property value',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'article-property-value',
+    'required' => true,
+    'properties' => array(
+        'article_id' => array(
+            'description' => 'ID of the article',
+            'type' => 'integer',
+            'sentAs' => 'article_id',
+            'required' => true,
+        ),
+        'article_property_id' => array(
+            'description' => 'ID of the property',
+            'type' => 'integer',
+            'sentAs' => 'article_property_id',
+            'required' => true,
+        ),
+        'value' => array(
+            'description' => 'Property value',
+            'type' => 'string',
+            'sentAs' => 'value',
+            'required' => true,
+        )
+    )
+);
+
 $invoiceItemParameter = array(
     'description' => 'Invoice item',
     'location' => 'json',
@@ -902,6 +930,34 @@ $emailTemplateParameterCreate['properties']['type']['required'] = true;
 $emailTemplateParameterCreate['properties']['bcc']['required'] = true;
 $emailTemplateParameterCreate['properties']['is_default']['required'] = true;
 
+$userPropertyValueParameter = array(
+    'description' => 'User property value',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'user-property-value',
+    'required' => true,
+    'properties' => array(
+        'user_id' => array(
+            'description' => 'ID of the user',
+            'type' => 'integer',
+            'sentAs' => 'user_id',
+            'required' => true,
+        ),
+        'user_property_id' => array(
+            'description' => 'ID of the property',
+            'type' => 'integer',
+            'sentAs' => 'user_property_id',
+            'required' => true,
+        ),
+        'value' => array(
+            'description' => 'Property value',
+            'type' => 'string',
+            'sentAs' => 'value',
+            'required' => true,
+        )
+    )
+);
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -1382,6 +1438,103 @@ return array(
                     'sentAs'      => 'id',
                     'required'    => true
                 )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * ARTICLE PROPERTY VALUE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetArticlePropertyValues' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/article-property-values',
+            'summary'          => 'List all article property values',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
+                ),
+                'article_id'  => array(
+                    'description' => 'ID of a article',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'article_id',
+                    'required'    => false
+                ),
+                'article_property_id'  => array(
+                    'description' => 'ID of a property',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'article_property_id',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetArticlePropertyValue' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/article-property-values/{id}',
+            'summary'          => 'Get a specific property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Article property value id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'SetArticlePropertyValue' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/article-property-values',
+            'summary'          => 'Set a specific article property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/articles/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'article-property-value'  => $articlePropertyValueParameter
             )
         ),
 
@@ -3086,6 +3239,96 @@ return array(
                     'sentAs'      => 'id',
                     'required'    => true
                 )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * USER PROPERTY VALUE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetUserPropertyValues' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/user-property-values',
+            'summary'          => 'List all user property values',
+            'documentationUrl' => 'http://www.billomat.com/en/api/users/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
+                ),
+                'user_id'  => array(
+                    'description' => 'ID of a user',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'user_id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'GetUserPropertyValue' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/user-property-values/{id}',
+            'summary'          => 'Get a specific property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/users/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'User property value id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'SetUserPropertyValue' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/user-property-values',
+            'summary'          => 'Set a specific user property',
+            'documentationUrl' => 'http://www.billomat.com/en/api/users/properties',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'user-property-value'  => $userPropertyValueParameter
             )
         ),
 
