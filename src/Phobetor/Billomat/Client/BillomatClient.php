@@ -99,6 +99,13 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateReminderText(array $args = array()) {@command Billomat UpdateReminderText}
  * @method void deleteReminderText(array $args = array()) {@command Billomat DeleteReminderText}
  *
+ * EMAIL TEMPLATE RELATED METHODS:
+ * @method array getEmailTemplates(array $args = array()) {@command Billomat GetEmailTemplates}
+ * @method array getEmailTemplate(array $args = array()) {@command Billomat GetEmailTemplate}
+ * @method array createEmailTemplate(array $args = array()) {@command Billomat CreateEmailTemplate}
+ * @method array updateEmailTemplate(array $args = array()) {@command Billomat UpdateEmailTemplate}
+ * @method void deleteEmailTemplate(array $args = array()) {@command Billomat DeleteEmailTemplate}
+ *
  * @licence MIT
  */
 class BillomatClient extends Client
@@ -167,6 +174,7 @@ class BillomatClient extends Client
             case 'getTaxes':
             case 'getCountryTaxes':
             case 'getReminderTexts':
+            case 'getEmailTemplates':
                 foreach ($result as $listKey => $list) {
                     if (is_array($list)) {
                         foreach ($list as $itemKey => $item) {

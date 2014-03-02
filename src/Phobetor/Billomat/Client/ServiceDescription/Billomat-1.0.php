@@ -847,6 +847,61 @@ $reminderTextParameter = array(
     )
 );
 
+$emailTemplateParameter = array(
+    'description' => 'Email template',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'email-template',
+    'required' => true,
+    'properties' => array(
+        'name'  => array(
+            'description' => 'Name (for internal use)',
+            'type'        => 'string',
+            'sentAs'      => 'name',
+            'required'    => false
+        ),
+        'type'  => array(
+            'description' => 'Document type',
+            'type'        => 'string',
+            'enum' => array('INVOICES', 'OFFERS', 'CONFIRMATIONS', 'CREDIT_NOTES', 'DELIVERY_NOTES', 'REMINDERS'),
+            'sentAs'      => 'type',
+            'required'    => false
+        ),
+        'subject'  => array(
+            'description' => 'Subject',
+            'type'        => 'string',
+            'sentAs'      => 'subject',
+            'required'    => false
+        ),
+        'text'  => array(
+            'description' => 'Message text',
+            'type'        => 'string',
+            'sentAs'      => 'text',
+            'required'    => false
+        ),
+        'bcc'  => array(
+            'description' => 'Specifies whether the sender should get a copy as BCC',
+            'type'        => 'integer',
+            'enum' => array(0, 1),
+            'sentAs'      => 'bcc',
+            'required'    => false
+        ),
+        'is_default'  => array(
+            'description' => 'Specifies whether this is the standard template ',
+            'type'        => 'integer',
+            'enum' => array(0, 1),
+            'sentAs'      => 'is_default',
+            'required'    => false
+        )
+    )
+);
+
+$emailTemplateParameterCreate = $emailTemplateParameter;
+$emailTemplateParameterCreate['properties']['name']['required'] = true;
+$emailTemplateParameterCreate['properties']['type']['required'] = true;
+$emailTemplateParameterCreate['properties']['bcc']['required'] = true;
+$emailTemplateParameterCreate['properties']['is_default']['required'] = true;
+
 return array(
     'name'        => 'Billomat',
     'apiVersion'  => '1.0',
@@ -2812,6 +2867,129 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Reminder text id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * EMAIL TEMPLATE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetEmailTemplates' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/email-templates',
+            'summary'          => 'List all email templates',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetEmailTemplate' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/email-templates/{id}',
+            'summary'          => 'Get a specific email template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Email template id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateEmailTemplate' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/email-templates',
+            'summary'          => 'Create a email template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'email-template'  => $emailTemplateParameterCreate
+            )
+        ),
+
+        'UpdateEmailTemplate' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/email-templates/{id}',
+            'summary'          => 'Update a email template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Email template id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'email-template'  => $emailTemplateParameter
+            )
+        ),
+
+        'DeleteEmailTemplate' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/email-templates/{id}',
+            'summary'          => 'Delete a email template',
+            'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Email template id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
