@@ -146,6 +146,11 @@ class BillomatClient extends Client
             case 'getArticles':
             case 'getInvoices':
             case 'getInvoiceItems':
+            case 'getTemplates':
+            case 'getArticleProperties':
+            case 'getClientProperties':
+            case 'getUserProperties':
+            case 'getTaxes':
                 foreach ($result as $listKey => $list) {
                     if (is_array($list)) {
                         foreach ($list as $itemKey => $item) {
