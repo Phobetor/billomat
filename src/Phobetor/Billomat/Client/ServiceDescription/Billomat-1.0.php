@@ -663,6 +663,200 @@ $invoiceParameter = array(
     )
 );
 
+$creditNoteItemParameter = array(
+    'description' => 'Credit note item',
+    'location' => 'json',
+    'type' => 'object',
+    'properties' => array(
+        'credit_note_id' => array(
+            'description' => 'ID of the credit note',
+            'type' => 'integer',
+            'sentAs' => 'credit_note_id',
+            'required' => false,
+        ),
+        'article_id' => array(
+            'description' => 'ID of the article, sets additionally the values from the article on creation',
+            'type' => 'integer',
+            'sentAs' => 'article_id',
+            'required' => false,
+        ),
+        'unit' => array(
+            'description' => 'Unit',
+            'type' => 'string',
+            'sentAs' => 'unit',
+            'required' => false,
+        ),
+        'quantity' => array(
+            'description' => 'Quantity',
+            'type' => 'number',
+            'sentAs' => 'quantity',
+            'required' => false,
+        ),
+        'unit_price' => array(
+            'description' => 'Price per unit. Default: 0.0000',
+            'type' => 'number',
+            'sentAs' => 'unit_price',
+            'required' => false,
+        ),
+        'tax_name' => array(
+            'description' => 'Name of the tax. Default: Value taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'tax_name',
+            'required' => false,
+        ),
+        'tax_rate' => array(
+            'description' => 'Rate of taxation. Default: Value taken from the settings',
+            'type' => 'number',
+            'sentAs' => 'tax_rate',
+            'required' => false,
+        ),
+        'title' => array(
+            'description' => 'Title',
+            'type' => 'string',
+            'sentAs' => 'title',
+            'required' => false,
+        ),
+        'description' => array(
+            'description' => 'Description',
+            'type' => 'string',
+            'sentAs' => 'description',
+            'required' => false,
+        ),
+        'reduction' => array(
+            'description' => 'Reduction (absolute or percent: 10/10%)',
+            'type' => 'string',
+            'sentAs' => 'reduction',
+            'required' => false,
+        ),
+    ),
+);
+
+// special case when credit note item is created directly
+$creditNoteItemParameterCreate = $creditNoteItemParameter;
+$creditNoteItemParameterCreate['properties']['credit_note_id']['required'] = true;
+
+$creditNoteParameter = array(
+    'description' => 'Credit note',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'credit-note',
+    'required' => true,
+    'properties' => array(
+        'client_id'  => array(
+            'description' => 'ID of the client',
+            'type'        => 'integer',
+            'sentAs'      => 'client_id',
+            'required'    => true
+        ),
+        'contact_id'  => array(
+            'description' => 'ID of the contact',
+            'type'        => 'integer',
+            'sentAs'      => 'contact_id',
+            'required'    => false
+        ),
+        'address' => array(
+            'description' => 'Address. Default: the client’s address',
+            'type' => 'string',
+            'sentAs' => 'address',
+            'required' => false,
+        ),
+        'number_pre' => array(
+            'description' => 'Credit note number prefix. Default: Value from settings',
+            'type' => 'string',
+            'sentAs' => 'number_pre',
+            'required' => false,
+        ),
+        'number' => array(
+            'description' => 'Sequential number. Default: Next free number',
+            'type' => 'integer',
+            'sentAs' => 'number',
+            'required' => false,
+        ),
+        'number_length' => array(
+            'description' => 'Minimum length of the credit note number (to be filled with leading zeros). Default: Value from settings',
+            'type' => 'integer',
+            'sentAs' => 'number_length',
+            'required' => false,
+        ),
+        'date' => array(
+            'description' => 'Credit note date. Default: today',
+            'type' => 'string',
+            'sentAs' => 'date',
+            'required' => false,
+        ),
+        'title' => array(
+            'description' => 'Title of the document',
+            'type' => 'string',
+            'sentAs' => 'title',
+            'required' => false,
+        ),
+        'label' => array(
+            'description' => 'Label text to describe the project',
+            'type' => 'string',
+            'sentAs' => 'label',
+            'required' => false,
+        ),
+        'intro' => array(
+            'description' => 'Introductory text. Default: Value taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'intro',
+            'required' => false,
+        ),
+        'note' => array(
+            'description' => 'Explanatory notes. Default: Value taken from the settings',
+            'type' => 'string',
+            'sentAs' => 'note',
+            'required' => false,
+        ),
+        'reduction' => array(
+            'description' => 'Reduction (absolute or percent: 10/10%)',
+            'type' => 'string',
+            'sentAs' => 'reduction',
+            'required' => false,
+        ),
+        'currency_code' => array(
+            'description' => 'ISO currency code. Default: default currency',
+            'type' => 'string',
+            'sentAs' => 'currency_code',
+            'required' => false,
+        ),
+        'net_gross' => array(
+            'description' => 'Price basis (gross or net prices). Default: Value taken from the settings',
+            'type' => 'string',
+            'enum' => array('NET', 'GROSS'),
+            'sentAs' => 'net_gross',
+            'required' => false,
+        ),
+        'quote' => array(
+            'description' => 'Currency quote (for conversion into standard currency). Default: 1.0000',
+            'type' => 'number',
+            'sentAs' => 'quote',
+            'required' => false,
+        ),
+        'invoice_id' => array(
+            'description' => 'The ID of the invoice, if the credit note was created from an invoice.',
+            'type' => 'integer',
+            'sentAs' => 'invoice_id',
+            'required' => false,
+        ),
+        'credit-note-items' => array(
+            'description' => 'Credit note items',
+            'type' => 'object',
+            'sentAs' => 'credit-note-items',
+            'required' => false,
+            'properties' => array(
+                'credit-note-item' => array(
+                    'description' => 'Credit note item',
+                    'type' => 'array',
+                    'sentAs' => 'credit-note-item',
+                    'required' => false,
+                    'items' => $creditNoteItemParameter,
+                ),
+            ),
+        )
+    )
+);
+
 $templateParameter = array(
     'description' => 'Template',
     'location' => 'json',
@@ -1803,6 +1997,14 @@ return array(
                     'enum' => array('pdf'),
                     'sentAs'      => 'format',
                     'required'    => false
+                ),
+                'type'  => array(
+                    'description' => 'Response type',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum' => array('print'),
+                    'sentAs'      => 'format',
+                    'required'    => false
                 )
             )
         ),
@@ -2155,6 +2357,586 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Invoice item id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * CREDIT NOTE RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetCreditNotes' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/credit-notes',
+            'summary'          => 'List all credit notes',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
+                ),
+                'client_id'  => array(
+                    'description' => 'ID of the client',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'client_id',
+                    'required'    => false
+                ),
+                'contact_id'  => array(
+                    'description' => 'ID of the contact',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'contact_id',
+                    'required'    => false
+                ),
+                'credit_note_number'  => array(
+                    'description' => 'Credit note number',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'credit_note_number',
+                    'required'    => false
+                ),
+                'status'  => array(
+                    'description' => 'Comma separated list of logically OR-connected statuses',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'status',
+                    'required'    => false
+                ),
+                'from'  => array(
+                    'description' => 'Only list credit notes since this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'from',
+                    'required'    => false
+                ),
+                'to'  => array(
+                    'description' => 'Only list credit notes up to this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'to',
+                    'required'    => false
+                ),
+                'label'  => array(
+                    'description' => 'Free text search in label text',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'label',
+                    'required'    => false
+                ),
+                'intro'  => array(
+                    'description' => 'Free text search in introductory text',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'intro',
+                    'required'    => false
+                ),
+                'note'  => array(
+                    'description' => 'Free text search in explanatory notes',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'note',
+                    'required'    => false
+                ),
+                'tags'  => array(
+                    'description' => 'Comma separated list of tags',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'tags',
+                    'required'    => false
+                ),
+                'group_by'  => array(
+                    'description' => 'Grouping parameter',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum' => array('client', 'status', 'day', 'week', 'month', 'year'),
+                    'sentAs'      => 'group_by',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetCreditNote' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/credit-notes/{id}',
+            'summary'          => 'Get a specific credit note',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateCreditNote' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/credit-notes',
+            'summary'          => 'Create an credit note',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'credit-note'  => $creditNoteParameter
+            )
+        ),
+
+        'UpdateCreditNote' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/credit-notes/{id}',
+            'summary'          => 'Update an credit note',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'credit-note'  => $creditNoteParameter
+            )
+        ),
+
+        'CompleteCreditNote' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/credit-notes/{id}/complete',
+            'summary'          => 'Complete an credit note',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'complete'  => array(
+                    'description' => 'Credit note complete data',
+                    'location' => 'json',
+                    'type' => 'object',
+                    'sentAs' => 'complete',
+                    'required' => true,
+                    'properties' => array(
+                        'template_id' => array(
+                            'description' => 'ID of the template to complete the credit note with',
+                            'type' => 'integer',
+                            'sentAs' => 'template_id',
+                            'required' => false,
+                        )
+                    )
+                )
+            )
+        ),
+
+        'GetCreditNotePdf' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/credit-notes/{id}/pdf',
+            'summary'          => 'Open pdf of an credit note',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'accept'  => array(
+                    'description' => 'Accept header',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'enum' => array('application/pdf'),
+                    'sentAs'      => 'Accept',
+                    'required'    => false
+                ),
+                'format'  => array(
+                    'description' => 'Response format',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum' => array('pdf'),
+                    'sentAs'      => 'format',
+                    'required'    => false
+                ),
+                'type'  => array(
+                    'description' => 'Response type',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'enum' => array('print'),
+                    'sentAs'      => 'type',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'SignCreditNote' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/credit-notes/{id}/upload-signature',
+            'summary'          => 'Upload a digital signature for a given credit note',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'signature'  => array(
+                    'description' => 'Digital signature',
+                    'location' => 'json',
+                    'type' => 'object',
+                    'sentAs' => 'signature',
+                    'required' => true,
+                    'properties' => array(
+                        'base64file' => array(
+                            'description' => 'Base64 encoded PDF with digital signature',
+                            'type' => 'string',
+                            'sentAs' => 'base64file',
+                            'required' => true,
+                        )
+                    )
+                )
+            )
+        ),
+
+        'SendCreditNoteEmail' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/credit-notes/{id}/email',
+            'summary'          => 'Send credit note by e-mail',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'email'  => array(
+                    'description' => 'Email data',
+                    'location' => 'json',
+                    'type' => 'object',
+                    'sentAs' => 'email',
+                    'required' => true,
+                    'properties' => array(
+                        'from' => array(
+                            'description' => 'Sender email address. Default: email from the settings',
+                            'type' => 'string',
+                            'sentAs' => 'from',
+                            'required' => false,
+                        ),
+                        'recipients' => array(
+                            'description' => 'Recipients of the e-mail. There must be at least one of "to", "cc" and/or "bcc"',
+                            'type' => 'object',
+                            'sentAs' => 'recipients',
+                            'required' => true,
+                            'properties' => array(
+                                'to' => array(
+                                    'description' => 'Recipient email address',
+                                    'type' => 'string',
+                                    'sentAs' => 'to',
+                                    'required' => false,
+                                ),
+                                'cc' => array(
+                                    'description' => 'CC Recipient',
+                                    'type' => 'string',
+                                    'sentAs' => 'cc',
+                                    'required' => false,
+                                ),
+                                'bcc' => array(
+                                    'description' => 'BCC Recipient',
+                                    'type' => 'string',
+                                    'sentAs' => 'bcc',
+                                    'required' => false,
+                                ),
+                            ),
+                        ),
+                        'subject' => array(
+                            'description' => 'Subject of the e-mail (may include placeholders). Default: Value taken from the settings',
+                            'type' => 'string',
+                            'sentAs' => 'subject',
+                            'required' => false,
+                        ),
+                        'body' => array(
+                            'description' => 'Text of the e-mail (may include placeholders). Default: Value taken from the settings',
+                            'type' => 'string',
+                            'sentAs' => 'body',
+                            'required' => false,
+                        ),
+                        'filename' => array(
+                            'description' => 'Name of the PDF file (without .pdf). Default: invoice_{id}',
+                            'type' => 'string',
+                            'sentAs' => 'filename',
+                            'required' => false,
+                        ),
+                        'attachments' => array(
+                            'description' => 'Further files',
+                            'type' => 'array',
+                            'sentAs' => 'attachments',
+                            'required' => false,
+                            'items' => array(
+                                'type' => 'object',
+                                'sendAs' => 'attachment',
+                                'properties' => array(
+                                    'filename' => array(
+                                        'description' => 'Filename',
+                                        'type' => 'string',
+                                        'sentAs' => 'filename',
+                                        'required' => true,
+                                    ),
+                                    'mimetype' => array(
+                                        'description' => 'Mime type',
+                                        'type' => 'string',
+                                        'sentAs' => 'mimetype',
+                                        'required' => true,
+                                    ),
+                                    'base64file' => array(
+                                        'description' => 'Base64 encoded file',
+                                        'type' => 'string',
+                                        'sentAs' => 'base64file',
+                                        'required' => true,
+                                    ),
+                                ),
+                            ),
+                        )
+                    )
+                )
+            )
+        ),
+
+        'DeleteCreditNote' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/credit-notes/{id}',
+            'summary'          => 'Delete an credit note',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * CREDIT NOTE ITEM RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetCreditNoteItems' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/credit-note-items',
+            'summary'          => 'List all credit note items',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'per_page'  => array(
+                    'description' => 'Rows per page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'per_page',
+                    'required'    => false
+                ),
+                'page'  => array(
+                    'description' => 'Page',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'page',
+                    'required'    => false
+                ),
+                'order_by'  => array(
+                    'description' => 'Order by',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'order_by',
+                    'required'    => false
+                ),
+                'credit_note_id'  => array(
+                    'description' => 'ID of the credit note',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'credit_note_id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'GetCreditNoteItem' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/credit-note-items/{id}',
+            'summary'          => 'Get a specific credit note item',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note item id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateCreditNoteItem' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/credit-note-items',
+            'summary'          => 'Create an credit note item',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'credit-note-item'  => $creditNoteItemParameterCreate
+            )
+        ),
+
+        'UpdateCreditNoteItem' => array(
+            'httpMethod'       => 'PUT',
+            'uri'              => '/api/credit-note-items/{id}',
+            'summary'          => 'Update an credit note item',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note item id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                ),
+                'credit-note-item'  => $creditNoteItemParameter
+            )
+        ),
+
+        'DeleteCreditNoteItem' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/credit-note-items/{id}',
+            'summary'          => 'Delete an credit note item',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'Credit note item id',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',

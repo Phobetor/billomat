@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.2.0
+
+* added operations on credit notes
+* added operations on credit note items
+
 ## 1.1.0
 
 * added change log

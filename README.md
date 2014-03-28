@@ -16,6 +16,8 @@ All methods on the following assets are supported:
   * [Properties](http://www.billomat.com/en/api/articles/properties)
 * [Invoices](http://www.billomat.com/en/api/invoices)
   * [Items](http://www.billomat.com/en/api/invoices/items)
+* [Credit Notes](http://www.billomat.com/en/api/credit-notes)
+  * [Items](http://www.billomat.com/en/api/credit-notes/items)
 * [Templates](http://www.billomat.com/en/api/templates)
 * ~~Settings~~
   * [Article Properties](http://www.billomat.com/en/api/settings/article-properties)
@@ -183,6 +185,24 @@ INVOICE ITEM RELATED METHODS [doc](http://www.billomat.com/en/api/invoices/items
 * array createInvoiceItem(array $args = array())
 * array updateInvoiceItem(array $args = array())
 * void deleteInvoiceItem(array $args = array())
+
+CREDIT NOTE RELATED METHODS [doc](http://www.billomat.com/en/api/credit-notes):
+* array getCreditNotes(array $args = array())
+* array getCreditNote(array $args = array())
+* array createCreditNote(array $args = array())
+* array updateCreditNote(array $args = array())
+* array completeCreditNote(array $args = array())
+* \Guzzle\Http\Message\Response getCreditNotePdf(array $args = array())
+* array signCreditNote(array $args = array())
+* array sendCreditNoteEmail(array $args = array())
+* void deleteCreditNote(array $args = array())
+*
+CREDIT NOTE ITEM RELATED METHODS [doc](http://www.billomat.com/en/api/credit-notes/items):
+* array getCreditNoteItems(array $args = array())
+* array getCreditNoteItem(array $args = array())
+* array createCreditNoteItem(array $args = array())
+* array updateCreditNoteItem(array $args = array())
+* void deleteCreditNoteItem(array $args = array())
 
 TEMPLATE RELATED METHODS [doc](http://www.billomat.com/en/api/templates):
 * array getTemplates(array $args = array())

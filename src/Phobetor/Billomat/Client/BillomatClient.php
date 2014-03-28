@@ -54,6 +54,24 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateInvoiceItem(array $args = array()) {@command Billomat UpdateInvoiceItem}
  * @method void deleteInvoiceItem(array $args = array()) {@command Billomat DeleteInvoiceItem}
  *
+ * CREDIT NOTE RELATED METHODS:
+ * @method array getCreditNotes(array $args = array()) {@command Billomat GetCreditNotes}
+ * @method array getCreditNote(array $args = array()) {@command Billomat GetCreditNote}
+ * @method array createCreditNote(array $args = array()) {@command Billomat CreateCreditNote}
+ * @method array updateCreditNote(array $args = array()) {@command Billomat UpdateCreditNote}
+ * @method array completeCreditNote(array $args = array()) {@command Billomat CompleteCreditNote}
+ * @method \Guzzle\Http\Message\Response getCreditNotePdf(array $args = array()) {@command Billomat GetCreditNotePdf}
+ * @method array signCreditNote(array $args = array()) {@command Billomat SignCreditNote}
+ * @method array sendCreditNoteEmail(array $args = array()) {@command Billomat SendCreditNoteEmail}
+ * @method void deleteCreditNote(array $args = array()) {@command Billomat DeleteCreditNote}
+ *
+ * CREDIT NOTE ITEM RELATED METHODS:
+ * @method array getCreditNoteItems(array $args = array()) {@command Billomat GetCreditNoteItems}
+ * @method array getCreditNoteItem(array $args = array()) {@command Billomat GetCreditNoteItem}
+ * @method array createCreditNoteItem(array $args = array()) {@command Billomat CreateCreditNoteItem}
+ * @method array updateCreditNoteItem(array $args = array()) {@command Billomat UpdateCreditNoteItem}
+ * @method void deleteCreditNoteItem(array $args = array()) {@command Billomat DeleteCreditNoteItem}
+ *
  * TEMPLATE RELATED METHODS:
  * @method array getTemplates(array $args = array()) {@command Billomat GetTemplate}
  * @method array getTemplate(array $args = array()) {@command Billomat GetTemplate}
@@ -178,6 +196,8 @@ class BillomatClient extends Client
             case 'getArticlePropertyValues':
             case 'getInvoices':
             case 'getInvoiceItems':
+            case 'getCreditNotes':
+            case 'getCreditNoteItems':
             case 'getTemplates':
             case 'getArticleProperties':
             case 'getClientProperties':
