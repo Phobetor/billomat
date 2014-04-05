@@ -97,7 +97,7 @@ $client = $billomat->updateClient(array(
 
 All `delete*` methods return nothing.
 
-`getInvoicePdf` (when called with `'format' => 'pdf'`) and `getTemplatePreview` return a guzzle response. You can easily extract the file content:
+The methods `get*Pdf` (when called with `'format' => 'pdf'`) and `getTemplatePreview` return a guzzle response. You can easily extract the file content:
 
 ```php
 // Fetch an invoice pdf file
@@ -268,7 +268,7 @@ USER PROPERTY VALUE RELATED METHODS [doc](http://www.billomat.com/en/api/users/p
 
 ### API glitches handled by this client internally
 
-The Billomat API provides two data formats, xml and json. The json format is used here. Due to an xml to json conversion in the Billomat API lists have a data inconsistencies in the json responses.
+The Billomat API provides two data formats, xml and json. The json format is used here. Due to an xml to json conversion in the Billomat API lists have a data inconsistency in the json responses.
 
 If there is ony one element in a list the API returns something like this:
 ```php
