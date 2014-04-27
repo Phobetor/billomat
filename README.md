@@ -16,6 +16,8 @@ All methods on the following assets are supported:
   * [Properties](http://www.billomat.com/en/api/articles/properties)
 * [Invoices](http://www.billomat.com/en/api/invoices)
   * [Items](http://www.billomat.com/en/api/invoices/items)
+  * [Payments](http://www.billomat.com/en/api/invoices/payments)
+  * [Tags](http://www.billomat.com/en/api/invoices/tags)
 * [Credit Notes](http://www.billomat.com/en/api/credit-notes)
   * [Items](http://www.billomat.com/en/api/credit-notes/items)
 * [Templates](http://www.billomat.com/en/api/templates)
@@ -186,6 +188,19 @@ INVOICE ITEM RELATED METHODS [doc](http://www.billomat.com/en/api/invoices/items
 * array updateInvoiceItem(array $args = array())
 * void deleteInvoiceItem(array $args = array())
 
+INVOICE PAYMENT RELATED METHODS [doc](http://www.billomat.com/en/api/invoices/payments):
+* array getInvoicePayments(array $args = array())
+* array getInvoicePayment(array $args = array())
+* array createInvoicePayment(array $args = array())
+* array deleteInvoicePayment(array $args = array())
+
+INVOICE TAG RELATED METHODS [doc](http://www.billomat.com/en/api/invoices/tags):
+* array getInvoiceTagCloud(array $args = array())
+* array getInvoiceTags(array $args = array())
+* array getInvoiceTag(array $args = array())
+* array createInvoiceTag(array $args = array())
+* array deleteInvoiceTag(array $args = array())
+*
 CREDIT NOTE RELATED METHODS [doc](http://www.billomat.com/en/api/credit-notes):
 * array getCreditNotes(array $args = array())
 * array getCreditNote(array $args = array())

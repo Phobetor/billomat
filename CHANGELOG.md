@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.0
+
+* added operations on invoice payments
+* added operations on invoice tags
+
 ## 1.2.0
 
 * added operations on credit notes
