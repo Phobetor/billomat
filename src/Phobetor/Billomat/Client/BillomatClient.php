@@ -47,17 +47,25 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array undoCancelInvoice(array $args = array()) {@command Billomat UndoCancelInvoice}
  * @method void deleteInvoice(array $args = array()) {@command Billomat DeleteInvoice}
  *
- * INVOICE TAG RELATED METHODS:
- *
- * @method array getInvoiceTags(array $args = array()) {@command Billomat GetInvoiceTags}
- * @method array createInvoiceTag(array $args = array()) {@command Billomat CreateInvoiceTag}
- *
  * INVOICE ITEM RELATED METHODS:
  * @method array getInvoiceItems(array $args = array()) {@command Billomat GetInvoiceItems}
  * @method array getInvoiceItem(array $args = array()) {@command Billomat GetInvoiceItem}
  * @method array createInvoiceItem(array $args = array()) {@command Billomat CreateInvoiceItem}
  * @method array updateInvoiceItem(array $args = array()) {@command Billomat UpdateInvoiceItem}
  * @method void deleteInvoiceItem(array $args = array()) {@command Billomat DeleteInvoiceItem}
+ *
+ * INVOICE TAG RELATED METHODS:
+ * @method array getInvoiceTagCloud(array $args = array()) {@command Billomat GetInvoiceTagCloud}
+ * @method array getInvoiceTags(array $args = array()) {@command Billomat GetInvoiceTags}
+ * @method array getInvoiceTag(array $args = array()) {@command Billomat GetInvoiceTag}
+ * @method array createInvoiceTag(array $args = array()) {@command Billomat CreateInvoiceTag}
+ * @method array deleteInvoiceTag(array $args = array()) {@command Billomat DeleteInvoiceTag}
+ *
+ * INVOICE PAYMENT RELATED METHODS:
+ * @method array getInvoicePayments(array $args = array()) {@command Billomat GetInvoicePayments}
+ * @method array getInvoicePayment(array $args = array()) {@command Billomat GetInvoicePayment}
+ * @method array createInvoicePayment(array $args = array()) {@command Billomat CreateInvoicePayment}
+ * @method array deleteInvoicePayment(array $args = array()) {@command Billomat DeleteInvoicePayment}
  *
  * CREDIT NOTE RELATED METHODS:
  * @method array getCreditNotes(array $args = array()) {@command Billomat GetCreditNotes}
@@ -201,6 +209,7 @@ class BillomatClient extends Client
             case 'getArticlePropertyValues':
             case 'getInvoices':
             case 'getInvoiceItems':
+            case 'getInvoiceTagCloud':
             case 'getInvoiceTags':
             case 'getInvoicePayments':
             case 'getCreditNotes':

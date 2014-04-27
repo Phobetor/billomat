@@ -486,7 +486,7 @@ $invoiceItemParameter = array(
 $invoiceItemParameterCreate = $invoiceItemParameter;
 $invoiceItemParameterCreate['properties']['invoice_id']['required'] = true;
 
-$invoiceTagParameter = array(
+$invoiceTagParameterCreate = array(
     'description' => 'Invoice tag',
     'location' => 'json',
     'type' => 'object',
@@ -494,23 +494,21 @@ $invoiceTagParameter = array(
     'required' => true,
     'properties' => array(
         'invoice_id' => array(
-            'description' => 'ID of the invoice',
+            'description' => 'ID of an invoice',
             'type' => 'integer',
             'sentAs' => 'invoice_id',
-            'required' => false,
+            'required' => true,
         ),
         'name' => array(
-            'description' => 'ID of the article, sets additionally the values from the article on creation',
+            'description' => 'Name of the tag',
             'type' => 'string',
             'sentAs' => 'name',
             'required' => true,
         )
     )
 );
-$invoiceTagParameterCreate = $invoiceTagParameter;
-$invoiceTagParameterCreate['properties']['invoice_id']['required'] = true;
 
-$invoicePaymentParameter = array(
+$invoicePaymentParameterCreate = array(
     'description' => 'Invoice Payment',
     'location' => 'json',
     'type' => 'object',
@@ -521,44 +519,42 @@ $invoicePaymentParameter = array(
             'description' => 'ID of the invoice',
             'type' => 'integer',
             'sentAs' => 'invoice_id',
-            'required' => false,
+            'required' => true,
         ),
         'date' => array(
-            'description' => 'Payment date',
+            'description' => 'Date of payment. Default: today',
             'type' => 'string',
             'sentAs' => 'date',
             'required' => false,
         ),
         'amount'  => array(
-            'description' => 'Amount of payment',
+            'description' => 'Payed amount',
             'type'        => 'numeric',
             'sentAs'      => 'amount',
             'required'    => true
         ),
         'comment' => array(
-            'description' => 'Comment',
+            'description' => 'Comment text',
             'type' => 'string',
             'sentAs' => 'comment',
             'required' => false,
         ),
         'type' => array(
-            'description' => 'Type of payment',
+            'description' => 'Payment type',
             'type' => 'string',
             'enum' => array('CREDIT_NOTE', 'BANK_CARD', 'BANK_TRANSFER', 'DEBIT', 'CASH', 'CHECK', 'PAYPAL', 'CREDIT_CARD', 'COUPON', 'MISC'),
             'sentAs' => 'type',
-            'required' => true,
-        ),        
+            'required' => false,
+        ),
         'mark_invoice_as_paid' => array(
-            'description' => 'Mark invoice as paid',
+            'description' => 'Mark associated invoice as paid. Default: 0',
             'type' => 'integer',
-            'enum' => array(0,1),
+            'enum' => array(0, 1),
             'sentAs' => 'mark_invoice_as_paid',
-            'required' => false,    
+            'required' => false,
         )
     )
 );
-$invoicePaymentParameterCreate = $invoicePaymentParameter;
-$invoicePaymentParameterCreate['properties']['invoice_id']['required'] = true;
 
 $invoiceParameter = array(
     'description' => 'Invoice',
@@ -2463,10 +2459,63 @@ return array(
                     'location'    => 'query',
                     'type'        => 'integer',
                     'sentAs'      => 'invoice_id',
+                    'required'    => false
+                ),
+                'from'  => array(
+                    'description' => 'Only list payments since this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'from',
+                    'required'    => false
+                ),
+                'to'  => array(
+                    'description' => 'Only list payments up to this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'to',
+                    'required'    => false
+                ),
+                'type' => array(
+                    'description' => 'Payment type',
+                    'location'    => 'query',
+                    'type' => 'string',
+                    'enum' => array('CREDIT_NOTE', 'BANK_CARD', 'BANK_TRANSFER', 'DEBIT', 'CASH', 'CHECK', 'PAYPAL', 'CREDIT_CARD', 'COUPON', 'MISC'),
+                    'sentAs' => 'type',
+                    'required' => false,
+                ),
+                'user_id'  => array(
+                    'description' => 'ID of the user',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'user_id',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetInvoicePayment' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/invoice-payments/{id}',
+            'summary'          => 'Get a specific invoice payment',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices/payments',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'ID of the invoice payment',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
                     'required'    => true
                 )
             )
         ),
+
         'CreateInvoicePayment' => array(
             'httpMethod'       => 'POST',
             'uri'              => '/api/invoice-payments',
@@ -2480,7 +2529,30 @@ return array(
                     'sentAs'      => 'X-BillomatApiKey',
                     'required'    => true
                 ),
-                'invoice-payment'  => $invoicePaymentParameter
+                'invoice-payment'  => $invoicePaymentParameterCreate
+            )
+        ),
+
+        'DeleteInvoicePayment' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/invoice-payments/{id}',
+            'summary'          => 'Delete a specific invoice payment',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices/payments',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'ID of the invoice payment',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
             )
         ),
 
@@ -2489,6 +2561,22 @@ return array(
          * INVOICE TAG RELATED OPERATIONS
          * --------------------------------------------------------------------------------
          */
+
+        'GetInvoiceTagCloud' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/invoice-tags',
+            'summary'          => 'Get the invoice tag cloud',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                )
+            )
+        ),
 
         'GetInvoiceTags' => array(
             'httpMethod'       => 'GET',
@@ -2512,6 +2600,30 @@ return array(
                 )
             )
         ),
+
+        'GetInvoiceTag' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/invoice-tags/{id}',
+            'summary'          => 'Get a specific invoice tag',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'ID of the invoice tag',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
         'CreateInvoiceTag' => array(
             'httpMethod'       => 'POST',
             'uri'              => '/api/invoice-tags',
@@ -2526,6 +2638,29 @@ return array(
                     'required'    => true
                 ),
                 'invoice-tag'  => $invoiceTagParameterCreate
+            )
+        ),
+
+        'DeleteInvoiceTag' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/invoice-tags/{id}',
+            'summary'          => 'Delete a specific invoice tag',
+            'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'ID of the invoice tag',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
             )
         ),
 
