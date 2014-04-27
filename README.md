@@ -211,7 +211,7 @@ CREDIT NOTE RELATED METHODS [doc](http://www.billomat.com/en/api/credit-notes):
 * array signCreditNote(array $args = array())
 * array sendCreditNoteEmail(array $args = array())
 * void deleteCreditNote(array $args = array())
-*
+
 CREDIT NOTE ITEM RELATED METHODS [doc](http://www.billomat.com/en/api/credit-notes/items):
 * array getCreditNoteItems(array $args = array())
 * array getCreditNoteItem(array $args = array())
