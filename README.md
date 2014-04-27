@@ -200,7 +200,7 @@ INVOICE TAG RELATED METHODS [doc](http://www.billomat.com/en/api/invoices/tags):
 * array getInvoiceTag(array $args = array())
 * array createInvoiceTag(array $args = array())
 * array deleteInvoiceTag(array $args = array())
-*
+
 CREDIT NOTE RELATED METHODS [doc](http://www.billomat.com/en/api/credit-notes):
 * array getCreditNotes(array $args = array())
 * array getCreditNote(array $args = array())
