@@ -816,7 +816,7 @@ $creditNoteParameter = array(
             'description' => 'ID of the client',
             'type'        => 'integer',
             'sentAs'      => 'client_id',
-            'required'    => true
+            'required'    => false
         ),
         'contact_id'  => array(
             'description' => 'ID of the contact',
@@ -926,6 +926,9 @@ $creditNoteParameter = array(
         )
     )
 );
+
+$creditNoteParameterCreate = $creditNoteParameter;
+$creditNoteParameterCreate['properties']['client_id']['required'] = true;
 
 $templateParameter = array(
     'description' => 'Template',
@@ -2821,7 +2824,7 @@ return array(
                     'sentAs'      => 'X-BillomatApiKey',
                     'required'    => true
                 ),
-                'credit-note'  => $creditNoteParameter
+                'credit-note'  => $creditNoteParameterCreate
             )
         ),
 
