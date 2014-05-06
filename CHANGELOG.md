@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.4.0
+
+* added operations on credit note payments
+
+## 1.3.1
+
+* fixed client_id requirement for credit-note update
+
 ## 1.3.0
 
 * added operations on invoice payments

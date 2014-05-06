@@ -20,6 +20,7 @@ All methods on the following assets are supported:
   * [Tags](http://www.billomat.com/en/api/invoices/tags)
 * [Credit Notes](http://www.billomat.com/en/api/credit-notes)
   * [Items](http://www.billomat.com/en/api/credit-notes/items)
+  * [Payments](http://www.billomat.com/en/api/credit-notes/payments)
 * [Templates](http://www.billomat.com/en/api/templates)
 * ~~Settings~~
   * [Article Properties](http://www.billomat.com/en/api/settings/article-properties)
@@ -218,6 +219,12 @@ CREDIT NOTE ITEM RELATED METHODS [doc](http://www.billomat.com/en/api/credit-not
 * array createCreditNoteItem(array $args = array())
 * array updateCreditNoteItem(array $args = array())
 * void deleteCreditNoteItem(array $args = array())
+
+CREDIT NOTE PAYMENT RELATED METHODS [doc](http://www.billomat.com/en/api/invoices/credit-notes):
+* array getCreditNotePayments(array $args = array())
+* array getCreditNotePayment(array $args = array())
+* array createCreditNotePayment(array $args = array())
+* array deleteCreditNotePayment(array $args = array())
 
 TEMPLATE RELATED METHODS [doc](http://www.billomat.com/en/api/templates):
 * array getTemplates(array $args = array())

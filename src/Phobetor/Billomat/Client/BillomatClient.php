@@ -85,6 +85,12 @@ use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
  * @method array updateCreditNoteItem(array $args = array()) {@command Billomat UpdateCreditNoteItem}
  * @method void deleteCreditNoteItem(array $args = array()) {@command Billomat DeleteCreditNoteItem}
  *
+ * CREDIT NOTE PAYMENT RELATED METHODS:
+ * @method array getCreditNotePayments(array $args = array()) {@command Billomat GetCreditNotePayments}
+ * @method array getCreditNotePayment(array $args = array()) {@command Billomat GetCreditNotePayment}
+ * @method array createCreditNotePayment(array $args = array()) {@command Billomat CreateCreditNotePayment}
+ * @method array deleteCreditNotePayment(array $args = array()) {@command Billomat DeleteCreditNotePayment}
+ *
  * TEMPLATE RELATED METHODS:
  * @method array getTemplates(array $args = array()) {@command Billomat GetTemplate}
  * @method array getTemplate(array $args = array()) {@command Billomat GetTemplate}
@@ -214,6 +220,7 @@ class BillomatClient extends Client
             case 'getInvoicePayments':
             case 'getCreditNotes':
             case 'getCreditNoteItems':
+            case 'getCreditNotePayments':
             case 'getTemplates':
             case 'getArticleProperties':
             case 'getClientProperties':

@@ -930,6 +930,54 @@ $creditNoteParameter = array(
 $creditNoteParameterCreate = $creditNoteParameter;
 $creditNoteParameterCreate['properties']['client_id']['required'] = true;
 
+$creditNotePaymentParameterCreate = array(
+    'description' => 'Credit Note Payment',
+    'location' => 'json',
+    'type' => 'object',
+    'sentAs' => 'credit-note-payment',
+    'required' => true,
+    'properties' => array(
+        'credit_note_id' => array(
+            'description' => 'ID of the credit note',
+            'type' => 'integer',
+            'sentAs' => 'credit_note_id',
+            'required' => true,
+        ),
+        'date' => array(
+            'description' => 'Date of payment. Default: today',
+            'type' => 'string',
+            'sentAs' => 'date',
+            'required' => false,
+        ),
+        'amount'  => array(
+            'description' => 'Payed amount',
+            'type'        => 'numeric',
+            'sentAs'      => 'amount',
+            'required'    => true
+        ),
+        'comment' => array(
+            'description' => 'Comment text',
+            'type' => 'string',
+            'sentAs' => 'comment',
+            'required' => false,
+        ),
+        'type' => array(
+            'description' => 'Payment type',
+            'type' => 'string',
+            'enum' => array('CREDIT_NOTE', 'BANK_TRANSFER', 'DEBIT', 'CASH', 'PAYPAL', 'CREDIT_CARD', 'MISC'),
+            'sentAs' => 'type',
+            'required' => false,
+        ),
+        'mark_credit_note_as_paid' => array(
+            'description' => 'Mark associated credit note as paid. Default: 0',
+            'type' => 'integer',
+            'enum' => array(0, 1),
+            'sentAs' => 'mark_credit_note_as_paid',
+            'required' => false,
+        )
+    )
+);
+
 $templateParameter = array(
     'description' => 'Template',
     'location' => 'json',
@@ -3239,6 +3287,127 @@ return array(
                 ),
                 'id'  => array(
                     'description' => 'Credit note item id',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        /**
+         * --------------------------------------------------------------------------------
+         * CREDIT NOTE PAYMENT RELATED OPERATIONS
+         * --------------------------------------------------------------------------------
+         */
+
+        'GetCreditNotePayments' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/credit-note-payments',
+            'summary'          => 'List all credit note payments',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'credit_note_id'  => array(
+                    'description' => 'ID of the credit note',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'credit_note_id',
+                    'required'    => false
+                ),
+                'from'  => array(
+                    'description' => 'Only list payments since this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'from',
+                    'required'    => false
+                ),
+                'to'  => array(
+                    'description' => 'Only list payments up to this date (format YYYY-MM-DD)',
+                    'location'    => 'query',
+                    'type'        => 'string',
+                    'sentAs'      => 'to',
+                    'required'    => false
+                ),
+                'type' => array(
+                    'description' => 'Payment type',
+                    'location'    => 'query',
+                    'type' => 'string',
+                    'enum' => array('CREDIT_NOTE', 'BANK_TRANSFER', 'DEBIT', 'CASH', 'PAYPAL', 'CREDIT_CARD', 'MISC'),
+                    'sentAs' => 'type',
+                    'required' => false,
+                ),
+                'user_id'  => array(
+                    'description' => 'ID of the user',
+                    'location'    => 'query',
+                    'type'        => 'integer',
+                    'sentAs'      => 'user_id',
+                    'required'    => false
+                )
+            )
+        ),
+
+        'GetCreditNotePayment' => array(
+            'httpMethod'       => 'GET',
+            'uri'              => '/api/credit-note-payments/{id}',
+            'summary'          => 'Get a specific credit note payment',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'ID of the credit note payment',
+                    'location'    => 'uri',
+                    'type'        => 'integer',
+                    'sentAs'      => 'id',
+                    'required'    => true
+                )
+            )
+        ),
+
+        'CreateCreditNotePayment' => array(
+            'httpMethod'       => 'POST',
+            'uri'              => '/api/credit-note-payments',
+            'summary'          => 'Create an credit note payment',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'credit-note-payment'  => $creditNotePaymentParameterCreate
+            )
+        ),
+
+        'DeleteCreditNotePayment' => array(
+            'httpMethod'       => 'DELETE',
+            'uri'              => '/api/credit-note-payments/{id}',
+            'summary'          => 'Delete a specific credit note payment',
+            'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
+            'parameters'       => array(
+                'api_key'  => array(
+                    'description' => 'Billomat API key',
+                    'location'    => 'header',
+                    'type'        => 'string',
+                    'sentAs'      => 'X-BillomatApiKey',
+                    'required'    => true
+                ),
+                'id'  => array(
+                    'description' => 'ID of the credit note payment',
                     'location'    => 'uri',
                     'type'        => 'integer',
                     'sentAs'      => 'id',
