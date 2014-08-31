@@ -7,22 +7,24 @@ use Phobetor\Billomat\Exception\BadRequestException;
 use Phobetor\Billomat\Exception\ExceptionListException;
 use Phobetor\Billomat\Exception\NoResponseException;
 use Phobetor\Billomat\Exception\NotFoundException;
+use Phobetor\Billomat\Exception\TooManyRequestsException;
 use Phobetor\Billomat\Exception\UnauthorizedException;
 use Phobetor\Billomat\Exception\UnknownErrorException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Map Billomat error messages to exceptions
+ * Map Billomat errors to exceptions
  *
  * @licence MIT
  */
 class ErrorHandlerListener implements EventSubscriberInterface
 {
-    const STATUS_OK             = 200;
-    const STATUS_CREATED        = 201;
-    const STATUS_BAD_REQUEST    = 400;
-    const STATUS_UNAUTHORIZED   = 401;
-    const STATUS_NOT_FOUND      = 404;
+    const STATUS_OK                 = 200;
+    const STATUS_CREATED            = 201;
+    const STATUS_BAD_REQUEST        = 400;
+    const STATUS_UNAUTHORIZED       = 401;
+    const STATUS_NOT_FOUND          = 404;
+    const STATUS_TOO_MANY_REQUESTS  = 429;
 
     /**
      * {@inheritDoc}
@@ -88,6 +90,8 @@ class ErrorHandlerListener implements EventSubscriberInterface
                 return new BadRequestException($errorName, $statusCode);
             case self::STATUS_UNAUTHORIZED:
                 return new UnauthorizedException($errorName, $statusCode);
+            case self::STATUS_TOO_MANY_REQUESTS:
+                return new TooManyRequestsException($errorName, $statusCode);
             default:
                 return new UnknownErrorException($errorName, $statusCode);
         }

@@ -163,6 +163,16 @@ class BillomatClient extends Client
     const LATEST_API_VERSION = '1.0';
 
     /**
+     * @var null|int
+     */
+    private $rateLimitRemaining = null;
+
+    /**
+     * @var null|int
+     */
+    private $rateLimitReset = null;
+
+    /**
      * @param string $billomatId
      * @param string $apiKey
      * @param string $version
@@ -206,7 +216,17 @@ class BillomatClient extends Client
      */
     public function __call($method, $args = array())
     {
-        $result = parent::__call(ucfirst($method), $args);
+        $command = $this->getCommand(ucfirst($method), isset($args[0]) ? $args[0] : array());
+
+        // take over rate limit data for public access
+        if ($command->getResponse()->hasHeader('X-Rate-Limit-Remaining')) {
+            $this->rateLimitRemaining = (int)(string)$command->getResponse()->getHeader('X-Rate-Limit-Remaining');
+        }
+        if ($command->getResponse()->hasHeader('X-Rate-Limit-Reset')) {
+            $this->rateLimitReset = (int)(string)$command->getResponse()->getHeader('X-Rate-Limit-Reset');
+        }
+
+        $result = $command->getResult();
 
         switch ($method) {
             case 'getClients':
@@ -255,5 +275,21 @@ class BillomatClient extends Client
     public function getApiVersion()
     {
         return $this->serviceDescription->getApiVersion();
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRateLimitRemaining()
+    {
+        return $this->rateLimitRemaining;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRateLimitReset()
+    {
+        return $this->rateLimitReset;
     }
 }
