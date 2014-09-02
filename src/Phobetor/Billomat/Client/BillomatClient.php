@@ -5,6 +5,7 @@ namespace Phobetor\Billomat\Client;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
 use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
+use Phobetor\Billomat\Exception\TooManyRequestsException;
 
 /**
  * Billomat client to interact with Billomat REST API
@@ -173,11 +174,17 @@ class BillomatClient extends Client
     private $rateLimitReset = null;
 
     /**
+     * @var bool
+     */
+    private $doWaitForRateLimitReset = false;
+
+    /**
      * @param string $billomatId
      * @param string $apiKey
+     * @param bool $doWaitForRateLimitReset
      * @param string $version
      */
-    public function __construct($billomatId, $apiKey, $version = self::LATEST_API_VERSION)
+    public function __construct($billomatId, $apiKey, $doWaitForRateLimitReset = false, $version = self::LATEST_API_VERSION)
     {
         parent::__construct(
             '',
@@ -209,6 +216,8 @@ class BillomatClient extends Client
         $this->setBaseUrl(sprintf('https://%s.billomat.net', $billomatId));
 
         $this->getEventDispatcher()->addSubscriber(new ErrorHandlerListener());
+
+        $this->doWaitForRateLimitReset = $doWaitForRateLimitReset;
     }
 
     /**
@@ -216,6 +225,47 @@ class BillomatClient extends Client
      */
     public function __call($method, $args = array())
     {
+        // no automatic rate limit handling, just execute the command
+        if (!$this->doWaitForRateLimitReset) {
+            return $this->executeCommand($method, $args);
+        }
+
+        $result = null;
+        do {
+            $caughtRateLimitException = false;
+            try {
+                $result = $this->executeCommand($method, $args);
+            }
+            catch (TooManyRequestsException $e) {
+                $caughtRateLimitException = true;
+
+                if (null !== $e->getRateLimitReset()) {
+                    // reset time was found, calculate exact interval to wait
+                    $now = new \DateTime();
+                    $now->setTimezone(new \DateTimeZone('UTC'));
+                    $reset = new \DateTime(sprintf('@%d', $e->getRateLimitReset()));
+
+                    $secondsToWait = $reset->getTimestamp() - $now->getTimestamp() + 1;
+                }
+                else {
+                    // reset time was not found, best guess 5 minutes.
+                    // if this is too short, the next loop will end here again.
+                    $secondsToWait = 5 * 60;
+                }
+
+                // sleep until rate limit reset
+                sleep($secondsToWait);
+            }
+            catch (\Exception $e) {
+                throw $e;
+            }
+        }
+        while ($caughtRateLimitException);
+
+        return $result;
+    }
+
+    private function executeCommand($method, $args = array()) {
         $command = $this->getCommand(ucfirst($method), isset($args[0]) ? $args[0] : array());
 
         // take over rate limit data for public access

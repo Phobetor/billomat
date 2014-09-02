@@ -64,12 +64,12 @@ class ErrorHandlerListener implements EventSubscriberInterface
             $exception = new ExceptionListException('', $statusCode);
             foreach ($errorName as $singleErrorName) {
                 $exception->addException(
-                    $this->createExceptionFromStatusCode($singleErrorName, $statusCode)
+                    $this->createExceptionFromStatusCode($singleErrorName, $response, $statusCode)
                 );
             }
         }
         else {
-            $exception = $this->createExceptionFromStatusCode($errorName, $statusCode);
+            $exception = $this->createExceptionFromStatusCode($errorName, $response, $statusCode);
         }
 
         throw $exception;
@@ -77,10 +77,11 @@ class ErrorHandlerListener implements EventSubscriberInterface
 
     /**
      * @param string $errorName
+     * @param \Guzzle\Http\Message\Response $response
      * @param int $statusCode
      * @return \Phobetor\Billomat\Exception\ExceptionInterface
      */
-    public function createExceptionFromStatusCode($errorName, $statusCode)
+    public function createExceptionFromStatusCode($errorName, $response, $statusCode)
     {
         $exception = null;
         switch ($statusCode) {
@@ -91,7 +92,14 @@ class ErrorHandlerListener implements EventSubscriberInterface
             case self::STATUS_UNAUTHORIZED:
                 return new UnauthorizedException($errorName, $statusCode);
             case self::STATUS_TOO_MANY_REQUESTS:
-                return new TooManyRequestsException($errorName, $statusCode);
+                $exception = new TooManyRequestsException($errorName, $statusCode);
+                if ($response->hasHeader('X-Rate-Limit-Remaining')) {
+                    $exception->setRateLimitRemaining((int)(string)$response->getHeader('X-Rate-Limit-Remaining'));
+                }
+                if ($response->hasHeader('X-Rate-Limit-Reset')) {
+                    $exception->setRateLimitReset((int)(string)$response->getHeader('X-Rate-Limit-Reset'));
+                }
+                return $exception;
             default:
                 return new UnknownErrorException($errorName, $statusCode);
         }
