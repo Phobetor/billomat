@@ -342,4 +342,12 @@ class BillomatClient extends Client
     {
         return $this->rateLimitReset;
     }
+
+    /**
+     * @param boolean $doWaitForRateLimitReset
+     */
+    public function setDoWaitForRateLimitReset($doWaitForRateLimitReset)
+    {
+        $this->doWaitForRateLimitReset = (bool)$doWaitForRateLimitReset;
+    }
 }
