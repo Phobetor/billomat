@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.5.0
+
+* added automatic waiting for rate limit reset
+* added rate limit handling
+
 ## 1.4.0
 
 * added operations on credit note payments

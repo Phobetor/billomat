@@ -44,7 +44,7 @@ If you want to use this client with Symfony 2, there is a ready-to-use bundle:
 ## Installation via composer
 
 ```sh
-php composer.phar require phobetor/billomat:~1.0
+php composer.phar require phobetor/billomat:~1.5
 ```
 
 ## How to use this
@@ -137,9 +137,35 @@ catch (\Phobetor\Billomat\Exception\NotFoundException $e) {
 catch (\Phobetor\Billomat\Exception\BadRequestException $e) {
     // Some of the given data must have been bad. $e->getMessage() could help.
 }
+catch (\Phobetor\Billomat\Exception\TooManyRequestsException $e) {
+    // The rate limit was reached. $e->getRateLimitReset() returns the UTC timestamp of the next rate limit reset.
+    // @see http://www.billomat.com/en/api/basics/rate-limiting for details about the rate limit.
+}
 catch (\Phobetor\Billomat\ExceptionInterface $e) {
     // Something else failed. Maybe there is no connection to the API servers.
 }
+```
+
+### Automatic rate limit handling
+
+If this client is used in asynchronous processes or CLI commands you can activate automatic waiting for rate limit reset.
+In that mode all method calls that would otherwise throw a `\Phobetor\Billomat\Exception\TooManyRequestsException` will wait for the rate limit reset and retry automatically.
+You SHOULD NOT use this in synchronous request (e. g. a website request) because all method calls in that mode can last up to the full rate limit interval to return.
+There are two ways to do this.
+
+At construction:
+
+```php
+use Phobetor\Billomat\Client\BillomatClient;
+
+// setting the fourth parameter to true enables waiting for rate limit
+$billomat = new BillomatClient('my-id', 'my-api-key', BillomatClient::LATEST_API_VERSION, true);
+```
+
+After construction:
+
+```php
+$billomat->setDoWaitForRateLimitReset(true);
 ```
 
 ### Complete reference
