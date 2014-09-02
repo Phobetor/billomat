@@ -181,10 +181,10 @@ class BillomatClient extends Client
     /**
      * @param string $billomatId
      * @param string $apiKey
-     * @param bool $doWaitForRateLimitReset
      * @param string $version
+     * @param bool $doWaitForRateLimitReset
      */
-    public function __construct($billomatId, $apiKey, $doWaitForRateLimitReset = false, $version = self::LATEST_API_VERSION)
+    public function __construct($billomatId, $apiKey, $version = self::LATEST_API_VERSION, $doWaitForRateLimitReset = false)
     {
         parent::__construct(
             '',
