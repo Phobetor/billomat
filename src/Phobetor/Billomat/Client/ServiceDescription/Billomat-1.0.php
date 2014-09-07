@@ -1290,13 +1290,6 @@ return array(
             'summary'          => 'List all clients',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -1390,13 +1383,6 @@ return array(
             'summary'          => 'Get a specific client',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Client id',
                     'location'    => 'uri',
@@ -1412,15 +1398,7 @@ return array(
             'uri'              => '/api/clients/myself',
             'summary'          => 'Your own account info',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients',
-            'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                )
-            )
+            'parameters'       => array()
         ),
 
         'CreateClient' => array(
@@ -1429,13 +1407,6 @@ return array(
             'summary'          => 'Create a client',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'client'  => $clientParameter
             )
         ),
@@ -1446,13 +1417,6 @@ return array(
             'summary'          => 'Update a client',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Client id',
                     'location'    => 'uri',
@@ -1470,13 +1434,6 @@ return array(
             'summary'          => 'Delete a client',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Client id',
                     'location'    => 'uri',
@@ -1499,13 +1456,6 @@ return array(
             'summary'          => 'List all client property values',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -1550,13 +1500,6 @@ return array(
             'summary'          => 'Get a specific property',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Client property value id',
                     'location'    => 'uri',
@@ -1573,13 +1516,6 @@ return array(
             'summary'          => 'Set a specific client property',
             'documentationUrl' => 'http://www.billomat.com/en/api/clients/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'client-property-value'  => $clientPropertyValueParameter
             )
         ),
@@ -1596,13 +1532,6 @@ return array(
             'summary'          => 'List all articles',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -1675,13 +1604,6 @@ return array(
             'summary'          => 'Get a specific article',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Article id',
                     'location'    => 'uri',
@@ -1698,13 +1620,6 @@ return array(
             'summary'          => 'Create an article',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'article'  => $articleParameter
             )
         ),
@@ -1715,13 +1630,6 @@ return array(
             'summary'          => 'Update an article',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Article id',
                     'location'    => 'uri',
@@ -1739,13 +1647,6 @@ return array(
             'summary'          => 'Delete an article',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Article id',
                     'location'    => 'uri',
@@ -1768,13 +1669,6 @@ return array(
             'summary'          => 'List all article property values',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -1819,13 +1713,6 @@ return array(
             'summary'          => 'Get a specific property',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Article property value id',
                     'location'    => 'uri',
@@ -1842,13 +1729,6 @@ return array(
             'summary'          => 'Set a specific article property',
             'documentationUrl' => 'http://www.billomat.com/en/api/articles/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'article-property-value'  => $articlePropertyValueParameter
             )
         ),
@@ -1865,13 +1745,6 @@ return array(
             'summary'          => 'List all invoices',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -1987,13 +1860,6 @@ return array(
             'summary'          => 'Get a specific invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2010,13 +1876,6 @@ return array(
             'summary'          => 'Create an invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'invoice'  => $invoiceParameter
             )
         ),
@@ -2027,13 +1886,6 @@ return array(
             'summary'          => 'Update an invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2051,13 +1903,6 @@ return array(
             'summary'          => 'Complete an invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2089,13 +1934,6 @@ return array(
             'summary'          => 'Open pdf of an invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2136,13 +1974,6 @@ return array(
             'summary'          => 'Upload a digital signature for a given invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2174,13 +2005,6 @@ return array(
             'summary'          => 'Send invoice by e-mail',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2286,13 +2110,6 @@ return array(
             'summary'          => 'Cancel an invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2309,13 +2126,6 @@ return array(
             'summary'          => 'Undo invoice cancellation',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2332,13 +2142,6 @@ return array(
             'summary'          => 'Delete an invoice',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice id',
                     'location'    => 'uri',
@@ -2361,13 +2164,6 @@ return array(
             'summary'          => 'List all invoice items',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -2405,13 +2201,6 @@ return array(
             'summary'          => 'Get a specific invoice item',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice item id',
                     'location'    => 'uri',
@@ -2428,13 +2217,6 @@ return array(
             'summary'          => 'Create an invoice item',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'invoice-item'  => $invoiceItemParameterCreate
             )
         ),
@@ -2445,13 +2227,6 @@ return array(
             'summary'          => 'Update an invoice item',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice item id',
                     'location'    => 'uri',
@@ -2469,13 +2244,6 @@ return array(
             'summary'          => 'Delete an invoice item',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Invoice item id',
                     'location'    => 'uri',
@@ -2498,13 +2266,6 @@ return array(
             'summary'          => 'List all invoice payments',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'invoice_id'  => array(
                     'description' => 'ID of the invoice',
                     'location'    => 'query',
@@ -2550,13 +2311,6 @@ return array(
             'summary'          => 'Get a specific invoice payment',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'ID of the invoice payment',
                     'location'    => 'uri',
@@ -2573,13 +2327,6 @@ return array(
             'summary'          => 'Create an invoice payment',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'invoice-payment'  => $invoicePaymentParameterCreate
             )
         ),
@@ -2590,13 +2337,6 @@ return array(
             'summary'          => 'Delete a specific invoice payment',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'ID of the invoice payment',
                     'location'    => 'uri',
@@ -2618,15 +2358,7 @@ return array(
             'uri'              => '/api/invoice-tags',
             'summary'          => 'Get the invoice tag cloud',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
-            'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                )
-            )
+            'parameters'       => array()
         ),
 
         'GetInvoiceTags' => array(
@@ -2635,13 +2367,6 @@ return array(
             'summary'          => 'List all invoice tags',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'invoice_id'  => array(
                     'description' => 'ID of the invoice',
                     'location'    => 'query',
@@ -2658,13 +2383,6 @@ return array(
             'summary'          => 'Get a specific invoice tag',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'ID of the invoice tag',
                     'location'    => 'uri',
@@ -2681,13 +2399,6 @@ return array(
             'summary'          => 'Create an invoice tag',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'invoice-tag'  => $invoiceTagParameterCreate
             )
         ),
@@ -2698,13 +2409,6 @@ return array(
             'summary'          => 'Delete a specific invoice tag',
             'documentationUrl' => 'http://www.billomat.com/en/api/invoices/tags',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'ID of the invoice tag',
                     'location'    => 'uri',
@@ -2727,13 +2431,6 @@ return array(
             'summary'          => 'List all credit notes',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -2842,13 +2539,6 @@ return array(
             'summary'          => 'Get a specific credit note',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note id',
                     'location'    => 'uri',
@@ -2865,13 +2555,6 @@ return array(
             'summary'          => 'Create an credit note',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'credit-note'  => $creditNoteParameterCreate
             )
         ),
@@ -2882,13 +2565,6 @@ return array(
             'summary'          => 'Update an credit note',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note id',
                     'location'    => 'uri',
@@ -2906,13 +2582,6 @@ return array(
             'summary'          => 'Complete an credit note',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note id',
                     'location'    => 'uri',
@@ -2944,13 +2613,6 @@ return array(
             'summary'          => 'Open pdf of an credit note',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note id',
                     'location'    => 'uri',
@@ -2991,13 +2653,6 @@ return array(
             'summary'          => 'Upload a digital signature for a given credit note',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note id',
                     'location'    => 'uri',
@@ -3029,13 +2684,6 @@ return array(
             'summary'          => 'Send credit note by e-mail',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note id',
                     'location'    => 'uri',
@@ -3141,13 +2789,6 @@ return array(
             'summary'          => 'Delete an credit note',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note id',
                     'location'    => 'uri',
@@ -3170,13 +2811,6 @@ return array(
             'summary'          => 'List all credit note items',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -3214,13 +2848,6 @@ return array(
             'summary'          => 'Get a specific credit note item',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note item id',
                     'location'    => 'uri',
@@ -3237,13 +2864,6 @@ return array(
             'summary'          => 'Create an credit note item',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'credit-note-item'  => $creditNoteItemParameterCreate
             )
         ),
@@ -3254,13 +2874,6 @@ return array(
             'summary'          => 'Update an credit note item',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note item id',
                     'location'    => 'uri',
@@ -3278,13 +2891,6 @@ return array(
             'summary'          => 'Delete an credit note item',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/items',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Credit note item id',
                     'location'    => 'uri',
@@ -3307,13 +2913,6 @@ return array(
             'summary'          => 'List all credit note payments',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'credit_note_id'  => array(
                     'description' => 'ID of the credit note',
                     'location'    => 'query',
@@ -3359,13 +2958,6 @@ return array(
             'summary'          => 'Get a specific credit note payment',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'ID of the credit note payment',
                     'location'    => 'uri',
@@ -3382,13 +2974,6 @@ return array(
             'summary'          => 'Create an credit note payment',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'credit-note-payment'  => $creditNotePaymentParameterCreate
             )
         ),
@@ -3399,13 +2984,6 @@ return array(
             'summary'          => 'Delete a specific credit note payment',
             'documentationUrl' => 'http://www.billomat.com/en/api/credit-notes/payments',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'ID of the credit note payment',
                     'location'    => 'uri',
@@ -3428,13 +3006,6 @@ return array(
             'summary'          => 'List all templates',
             'documentationUrl' => 'http://www.billomat.com/en/api/templates',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -3473,13 +3044,6 @@ return array(
             'summary'          => 'Get a specific template',
             'documentationUrl' => 'http://www.billomat.com/en/api/templates',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Template id',
                     'location'    => 'uri',
@@ -3496,13 +3060,6 @@ return array(
             'summary'          => 'Get a specific template’s preview',
             'documentationUrl' => 'http://www.billomat.com/en/api/templates',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Template id',
                     'location'    => 'uri',
@@ -3527,13 +3084,6 @@ return array(
             'summary'          => 'Create a template',
             'documentationUrl' => 'http://www.billomat.com/en/api/templates',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'template'  => $templateParameterCreate
             )
         ),
@@ -3544,13 +3094,6 @@ return array(
             'summary'          => 'Update a template',
             'documentationUrl' => 'http://www.billomat.com/en/api/templates',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Template id',
                     'location'    => 'uri',
@@ -3568,13 +3111,6 @@ return array(
             'summary'          => 'Delete a template',
             'documentationUrl' => 'http://www.billomat.com/en/api/templates',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Template id',
                     'location'    => 'uri',
@@ -3597,13 +3133,6 @@ return array(
             'summary'          => 'List all article properties',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/article-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -3634,13 +3163,6 @@ return array(
             'summary'          => 'Get a specific article property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/article-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Article property id',
                     'location'    => 'uri',
@@ -3657,13 +3179,6 @@ return array(
             'summary'          => 'Create a article property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/article-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'article-property'  => $articlePropertyParameterCreate
             )
         ),
@@ -3674,13 +3189,6 @@ return array(
             'summary'          => 'Update a specific article property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/article-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Article property id',
                     'location'    => 'uri',
@@ -3698,13 +3206,6 @@ return array(
             'summary'          => 'Delete a specific article property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/article-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Article property id',
                     'location'    => 'uri',
@@ -3727,13 +3228,6 @@ return array(
             'summary'          => 'List all client properties',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -3764,13 +3258,6 @@ return array(
             'summary'          => 'Get a specific client property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Client property id',
                     'location'    => 'uri',
@@ -3787,13 +3274,6 @@ return array(
             'summary'          => 'Create a client property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'client-property'  => $clientPropertyParameterCreate
             )
         ),
@@ -3804,13 +3284,6 @@ return array(
             'summary'          => 'Update a specific client property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Client property id',
                     'location'    => 'uri',
@@ -3828,13 +3301,6 @@ return array(
             'summary'          => 'Delete a specific client property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/client-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Client property id',
                     'location'    => 'uri',
@@ -3857,13 +3323,6 @@ return array(
             'summary'          => 'List all user properties',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/user-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -3894,13 +3353,6 @@ return array(
             'summary'          => 'Get a specific user property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/user-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'User property id',
                     'location'    => 'uri',
@@ -3917,13 +3369,6 @@ return array(
             'summary'          => 'Create a user property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/user-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'user-property'  => $userPropertyParameterCreate
             )
         ),
@@ -3934,13 +3379,6 @@ return array(
             'summary'          => 'Update a specific user property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/user-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'User property id',
                     'location'    => 'uri',
@@ -3958,13 +3396,6 @@ return array(
             'summary'          => 'Delete a specific user property',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/user-properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'User property id',
                     'location'    => 'uri',
@@ -3987,13 +3418,6 @@ return array(
             'summary'          => 'List all taxes',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -4024,13 +3448,6 @@ return array(
             'summary'          => 'Get a specific tax',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Tax id',
                     'location'    => 'uri',
@@ -4047,13 +3464,6 @@ return array(
             'summary'          => 'Create a tax',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'tax'  => $taxParameterCreate
             )
         ),
@@ -4064,13 +3474,6 @@ return array(
             'summary'          => 'Update a tax',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Tax id',
                     'location'    => 'uri',
@@ -4088,13 +3491,6 @@ return array(
             'summary'          => 'Delete a tax',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/taxes',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Tax id',
                     'location'    => 'uri',
@@ -4117,13 +3513,6 @@ return array(
             'summary'          => 'List all tax free countries',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -4154,13 +3543,6 @@ return array(
             'summary'          => 'Get a specific tax free country',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Tax free country id',
                     'location'    => 'uri',
@@ -4177,13 +3559,6 @@ return array(
             'summary'          => 'Create a tax free country',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'country-tax'  => $countryTaxParameter
             )
         ),
@@ -4194,13 +3569,6 @@ return array(
             'summary'          => 'Update a tax free country',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Tax free country id',
                     'location'    => 'uri',
@@ -4218,13 +3586,6 @@ return array(
             'summary'          => 'Delete a tax free country',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/tax-free-countries',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Tax free country id',
                     'location'    => 'uri',
@@ -4247,13 +3608,6 @@ return array(
             'summary'          => 'List all reminder texts',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -4284,13 +3638,6 @@ return array(
             'summary'          => 'Get a specific reminder text',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Reminder text id',
                     'location'    => 'uri',
@@ -4307,13 +3654,6 @@ return array(
             'summary'          => 'Create a reminder text',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'reminder-text'  => $reminderTextParameter
             )
         ),
@@ -4324,13 +3664,6 @@ return array(
             'summary'          => 'Update a reminder text',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Reminder text id',
                     'location'    => 'uri',
@@ -4348,13 +3681,6 @@ return array(
             'summary'          => 'Delete a reminder text',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/reminder-texts',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Reminder text id',
                     'location'    => 'uri',
@@ -4377,13 +3703,6 @@ return array(
             'summary'          => 'List all email templates',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -4414,13 +3733,6 @@ return array(
             'summary'          => 'Get a specific email template',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Email template id',
                     'location'    => 'uri',
@@ -4437,13 +3749,6 @@ return array(
             'summary'          => 'Create a email template',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'email-template'  => $emailTemplateParameterCreate
             )
         ),
@@ -4454,13 +3759,6 @@ return array(
             'summary'          => 'Update a email template',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Email template id',
                     'location'    => 'uri',
@@ -4478,13 +3776,6 @@ return array(
             'summary'          => 'Delete a email template',
             'documentationUrl' => 'http://www.billomat.com/en/api/settings/email-vorlagen',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'Email template id',
                     'location'    => 'uri',
@@ -4507,13 +3798,6 @@ return array(
             'summary'          => 'List all user property values',
             'documentationUrl' => 'http://www.billomat.com/en/api/users/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'per_page'  => array(
                     'description' => 'Rows per page',
                     'location'    => 'query',
@@ -4551,13 +3835,6 @@ return array(
             'summary'          => 'Get a specific property',
             'documentationUrl' => 'http://www.billomat.com/en/api/users/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'id'  => array(
                     'description' => 'User property value id',
                     'location'    => 'uri',
@@ -4574,13 +3851,6 @@ return array(
             'summary'          => 'Set a specific user property',
             'documentationUrl' => 'http://www.billomat.com/en/api/users/properties',
             'parameters'       => array(
-                'api_key'  => array(
-                    'description' => 'Billomat API key',
-                    'location'    => 'header',
-                    'type'        => 'string',
-                    'sentAs'      => 'X-BillomatApiKey',
-                    'required'    => true
-                ),
                 'user-property-value'  => $userPropertyValueParameter
             )
         ),

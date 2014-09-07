@@ -3,7 +3,8 @@
 namespace Phobetor\Billomat\Client;
 
 use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
+use Phobetor\Billomat\Client\DescriptionLoader\BillomatServiceDescriptionForApiAppCredentialsLoader;
+use Phobetor\Billomat\Client\DescriptionLoader\BillomatServiceDescriptionForApiKeyCredentialsLoader;
 use Phobetor\Billomat\Client\Listener\ErrorHandlerListener;
 use Phobetor\Billomat\Exception\TooManyRequestsException;
 
@@ -181,11 +182,28 @@ class BillomatClient extends Client
     /**
      * @param string $billomatId
      * @param string $apiKey
-     * @param string $version
+     * @param int $apiAppId
+     * @param string $apiAppSecret
      * @param bool $doWaitForRateLimitReset
+     * @param string $version
      */
-    public function __construct($billomatId, $apiKey, $version = self::LATEST_API_VERSION, $doWaitForRateLimitReset = false)
+    public function __construct($billomatId, $apiKey, $apiAppId = null, $apiAppSecret = null, $doWaitForRateLimitReset = false, $version = self::LATEST_API_VERSION)
     {
+        if (!empty($apiAppId) && !empty($apiAppSecret)) {
+            $descriptionLoader = new BillomatServiceDescriptionForApiAppCredentialsLoader();
+            $commandParameters = array(
+                'api_key' => $apiKey,
+                'api_app_id' => $apiAppId,
+                'api_app_secret' => $apiAppSecret
+            );
+        }
+        else {
+            $descriptionLoader = new BillomatServiceDescriptionForApiKeyCredentialsLoader();
+            $commandParameters = array(
+                'api_key' => $apiKey,
+            );
+        }
+
         parent::__construct(
             '',
             array(
@@ -194,18 +212,13 @@ class BillomatClient extends Client
                         'Accept' => 'application/json'
                     ),
                 ),
-                'command.params' => array(
-                        'api_key' => $apiKey
-                )
+                'command.params' => $commandParameters
             )
         );
 
         $this->setDescription(
-            ServiceDescription::factory(
-                sprintf(
-                    __DIR__ . '/ServiceDescription/Billomat-%s.php',
-                    $version
-                )
+            $descriptionLoader->load(
+                sprintf('%s/ServiceDescription/Billomat-%s.php', __DIR__, $version)
             )
         );
 
