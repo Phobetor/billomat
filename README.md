@@ -148,7 +148,7 @@ catch (\Phobetor\Billomat\Exception\BadRequestException $e) {
 }
 catch (\Phobetor\Billomat\Exception\TooManyRequestsException $e) {
     // The rate limit was reached. $e->getRateLimitReset() returns the UTC timestamp of the next rate limit reset.
-    // @see [http://www.billomat.com/en/api/basics/rate-limiting](http://www.billomat.com/en/api/basics/rate-limiting) for details about the rate limit.
+    // @see http://www.billomat.com/en/api/basics/rate-limiting for details about the rate limit.
 }
 catch (\Phobetor\Billomat\ExceptionInterface $e) {
     // Something else failed. Maybe there is no connection to the API servers.
