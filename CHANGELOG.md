@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.0
+
+* added authentication of registered apps
+  BREAKING CHANGE: BillomatClient::__construct signature has changed (see [upgrade instructions](UPGRADE-2.0.0.md))
+
 ## 1.5.0
 
 * added automatic waiting for rate limit reset
