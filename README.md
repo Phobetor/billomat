@@ -148,7 +148,7 @@ catch (\Phobetor\Billomat\Exception\BadRequestException $e) {
 }
 catch (\Phobetor\Billomat\Exception\TooManyRequestsException $e) {
     // The rate limit was reached. $e->getRateLimitReset() returns the UTC timestamp of the next rate limit reset.
-    // @see http://www.billomat.com/en/api/basics/rate-limiting for details about the rate limit.
+    // @see [http://www.billomat.com/en/api/basics/rate-limiting](http://www.billomat.com/en/api/basics/rate-limiting) for details about the rate limit.
 }
 catch (\Phobetor\Billomat\ExceptionInterface $e) {
     // Something else failed. Maybe there is no connection to the API servers.
@@ -159,7 +159,7 @@ catch (\Phobetor\Billomat\ExceptionInterface $e) {
 
 If this client is used in asynchronous processes or CLI commands you can activate automatic waiting for rate limit reset.
 In that mode all method calls that would otherwise throw a `\Phobetor\Billomat\Exception\TooManyRequestsException` will wait for the rate limit reset and retry automatically.
-You SHOULD NOT use this in synchronous request (e. g. a website request) because all method calls in that mode can last up to the full rate limit interval to return.
+You SHOULD NOT use this in synchronous request (e. g. a website request) because all method calls in that mode can last very long and most likely longer than your server’s gateway timeout.
 There are two ways to do this.
 
 At construction:
