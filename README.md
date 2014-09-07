@@ -57,6 +57,15 @@ use Phobetor\Billomat\Client\BillomatClient;
 $billomat = new BillomatClient('my-id', 'my-api-key');
 ```
 
+If you have a registered app for billomat’s API (which is highly recommended due to higher
+rate limits) instantiate the client like this:
+
+```php
+use Phobetor\Billomat\Client\BillomatClient;
+
+$billomat = new BillomatClient('my-id', 'my-api-key', 'my-api-app-id', 'my-api-app-secret');
+```
+
 The client will find the correct endpoint automatically based on your id.
 
 All methods are accessible from that client object:
@@ -158,8 +167,8 @@ At construction:
 ```php
 use Phobetor\Billomat\Client\BillomatClient;
 
-// setting the fourth parameter to true enables waiting for rate limit
-$billomat = new BillomatClient('my-id', 'my-api-key', BillomatClient::LATEST_API_VERSION, true);
+// setting the fifth parameter to true enables waiting for rate limit
+$billomat = new BillomatClient('my-id', 'my-api-key', 'my-api-app-id', 'my-api-app-secret', true);
 ```
 
 After construction:
