@@ -90,7 +90,7 @@ $client = $billomat->createClient(array(
 All method names are based on the Billomat API URLs and follow the [CRUD](http://de.wikipedia.org/wiki/CRUD) naming schema whenever possible.
 
 All parameter names are exactly mapped. Therefore, you can refer to the [official API documentation](http://www.billomat.com/en/api).
-Deep links are given in the asset list above and the method list below.
+Deep links to specific documentation sections are given in the [extend of this client](#extend-of-this-client) list above and the [complete method reference](#complete-method-reference) list below.
 
 Here is the user update method as an example for the [client](http://www.billomat.com/en/api/clients) asset:
 
@@ -159,7 +159,7 @@ catch (\Phobetor\Billomat\ExceptionInterface $e) {
 
 If this client is used in asynchronous processes or CLI commands you can activate automatic waiting for rate limit reset.
 In that mode all method calls that would otherwise throw a `\Phobetor\Billomat\Exception\TooManyRequestsException` will wait for the rate limit reset and retry automatically.
-You SHOULD NOT use this in synchronous request (e. g. a website request) because all method calls in that mode can last very long and most likely longer than your server’s gateway timeout.
+You **should not** use this in synchronous request (e. g. a website request) because all method calls in that mode can last very long and most likely longer than your server’s request timeout.
 There are two ways to do this.
 
 At construction:
@@ -177,7 +177,7 @@ After construction:
 $billomat->setDoWaitForRateLimitReset(true);
 ```
 
-### Complete reference
+### Complete method reference
 
 CLIENT RELATED METHODS [doc](http://www.billomat.com/en/api/clients):
 * array getClients(array $args = array())
