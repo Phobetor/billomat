@@ -721,13 +721,7 @@ $invoiceParameter = array(
             'sentAs' => 'invoice-items',
             'required' => false,
             'properties' => array(
-                'invoice-item' => array(
-                    'description' => 'Invoice items',
-                    'type' => 'array',
-                    'sentAs' => 'invoice-item',
-                    'required' => false,
-                    'items' => $invoiceItemParameter,
-                ),
+                'invoice-item' => $invoiceItemParameter
             ),
         )
     )
